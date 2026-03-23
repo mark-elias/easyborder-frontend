@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 // zustand country store
 import { useCountryStore } from "../lib/store/useCountryStore";
 
@@ -9,7 +10,14 @@ function Home() {
   const selectedCountry = useCountryStore((state) => state.selectedCountry);
   const setCountry = useCountryStore((state) => state.setCountry);
   // router
-  const router = useRouter;
+  const router = useRouter();
+
+  // Auto-redirect if country already selected
+  useEffect(() => {
+    if (selectedCountry) {
+      router.push("/cities");
+    }
+  }, [selectedCountry, router]);
 
   const handleCountrySelect = (country: "MX" | "CA") => {
     setCountry(country);
