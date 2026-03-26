@@ -6,10 +6,18 @@
 
 /*  */
 :root {
-  --primary-blue: #3551f3;
-  --secondary-grey: #959597;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* background & text */
+  --background: #0f0f11;
+  --foreground: #e2e2e6;
+  
+  /* my custom colors */
+  --custom-blue: #3551f3;
+  --custom-grey: #959597;
+  --custom-red: #ff605c;
+  --custom-yellow: #ffbd44;
+  --custom-green: #00ca4e;
+  
+  /* shadcn component colors */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -45,12 +53,15 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-
-  --color-primary-blue: var(--primary-blue);
-  --color-secondary-grey: var(--secondary-grey);
-  --font-heading: var(--font-sans);
+  
+  /* my custom colors availble for tailwind */
+  --color-custom-blue: var(--custom-blue);
+  --color-custom-grey: var(--custom-grey);
+  --color-custom-red: var(--custom-red);
+  --color-custom-yellow: var(--custom-yellow);
+  --color-custom-green: var(--custom-green);
+  
+  /* shadcn component colors */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -89,14 +100,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-blue: #3551f3;
-    --secondary-grey: #959597;
-  }
-}
 
-/*  ---break---*/
 
 .dark {
   --background: oklch(0.145 0 0);
