@@ -4,8 +4,10 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 // zustand country store
 import { useCountryStore } from "../lib/store/useCountryStore";
+// shadcn
+import { Button } from "@/components/ui/button";
 
-function Home() {
+function HomePage() {
   // zustand
   const selectedCountry = useCountryStore((state) => state.selectedCountry);
   const setCountry = useCountryStore((state) => state.setCountry);
@@ -26,35 +28,41 @@ function Home() {
   const TEXT = {
     title: "Select Country",
     description: "select the country you are traveling from",
+    mexico_logo: "🇲🇽",
+    canada_logo: "🇨🇦",
     mexico: "Mexico",
     canada: "Canada",
   };
 
   return (
-    <main className="flex flex-col items-center pt-30 min-h-screen">
-      <h1 className="text-3xl font-bold">{TEXT.title}</h1>
-      <p className="text-xl text-secondary-grey">{TEXT.description}</p>
-      <div className="mt-20 flex flex-col gap-10">
-        <button
-          onClick={() => handleCountrySelect("MX")}
-          className="text-4xl border-secondary-grey border-1 py-5 px-10 flex gap-2 justify-center rounded-xl hover:bg-primary-blue hover:border-primary-blue "
-        >
-          <span>🇲🇽</span>
-          {TEXT.mexico}
-        </button>
-        <button
-          onClick={() => handleCountrySelect("CA")}
-          className="text-4xl border-secondary-grey border-1 py-5 px-10 flex gap-2 justify-center rounded-xl hover:bg-primary-blue hover:border-primary-blue shadow-3xl "
-        >
-          <span>🇨🇦</span>
-          {TEXT.canada}
-        </button>
+    <main className="flex flex-col justify-center items-center min-h-screen p-5">
+      <div className="text-center">
+        <h1 className="text-4xl lg:text-5xl font-bold">{TEXT.title}</h1>
+        <h3 className="text-2xl lg:text-3xl text-custom-grey">
+          {TEXT.description}
+        </h3>
       </div>
-      <div className="mt-30">
-        <p>Selected Country: {selectedCountry}</p>
+
+      <div className="mt-10 lg:mt-20 w-full lg:max-w-xl flex flex-col gap-5 ">
+        <Button
+          onClick={() => handleCountrySelect("MX")}
+          variant="outline"
+          className="w-full text-3xl py-8 hover:text-black "
+        >
+          <span>{TEXT.mexico_logo}</span>
+          <span>{TEXT.mexico}</span>
+        </Button>
+        <Button
+          onClick={() => handleCountrySelect("CA")}
+          variant="outline"
+          className="w-full text-3xl py-8 hover:text-black"
+        >
+          <span>{TEXT.canada_logo}</span>
+          <span>{TEXT.canada}</span>
+        </Button>
       </div>
     </main>
   );
 }
 
-export default Home;
+export default HomePage;
