@@ -1,12 +1,9 @@
 "use client";
 // zustand
 import { useCountryStore } from "@/src/lib/store/useCountryStore";
-
-// mock data
-const MOCK_CITIES = {
-  MX: ["Tijuana", "Nogales", "Ciudad Juarez", "Mexicali", "Nuevo Laredo"],
-  CA: ["Vancouver", "Toronto", "Montreal", "Calgary"],
-};
+// cities constants
+import { MEXICO_CITIES } from "@/src/lib/constants/mexico-cities";
+import { CANADA_CITIES } from "@/src/lib/constants/canada-cities";
 
 function CitiesPage() {
   const selectedCountry = useCountryStore((state) => state.selectedCountry);
@@ -15,20 +12,20 @@ function CitiesPage() {
     return <div>Please select a country first</div>;
   }
 
-  const cities = MOCK_CITIES[selectedCountry] || ["city1", "city2", "city3"];
+  const cities = selectedCountry === "MX" ? MEXICO_CITIES : CANADA_CITIES;
 
   return (
     <main className="min-h-screen p-5">
-      <h1 className="text-4xl font-bold mb-8">Select City</h1>
-      <h3>select the city you are crossing from</h3>
+      <h1 className="text-4xl font-bold mb-1">Select City</h1>
+      <h3>select the city you are crossing in from</h3>
 
-      <div className="flex flex-col gap-5 mt-10">
+      <section className="flex flex-wrap gap-5 mt-20">
         {cities.map((city) => (
-          <div key={city} className="border-1 border-white bg-primary p-5 rounded-2xl">
+          <div key={city} className="border-2 border-custom-blue p-5 rounded-xl hover:bg-custom-blue">
             {city}
           </div>
         ))}
-      </div>
+      </section>
     </main>
   );
 }
