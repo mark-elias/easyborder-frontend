@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 // interface for my store
-interface CountryStore {
+interface CountryAndCityStore {
   selectedCountry: "MX" | "CA" | null;
   selectedCity: string | null;
 
@@ -13,7 +13,7 @@ interface CountryStore {
 
 // create my store
 // with my type/interface
-export const useCountryStore = create<CountryStore>(
+export const useCountryAndCityStore = create<CountryAndCityStore>(
   // function that defines the store
   (set) => ({
     // initial state

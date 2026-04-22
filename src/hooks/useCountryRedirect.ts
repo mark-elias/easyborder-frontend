@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useCountryStore } from "../lib/store/useCountryStore";
+import { useCountryAndCityStore } from "../lib/store/useCountryAndCityStore";
 
 export function useCountryRedirect() {
   const router = useRouter();
-  const selectedCountry = useCountryStore((state) => state.selectedCountry);
+  const selectedCountry = useCountryAndCityStore(
+    (state) => state.selectedCountry,
+  );
 
   useEffect(() => {
     if (selectedCountry) {

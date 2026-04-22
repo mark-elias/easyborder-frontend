@@ -1,6 +1,6 @@
 "use client";
 // zustand
-import { useCountryStore } from "@/src/lib/store/useCountryStore";
+import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // constants
 import { CITIES_PAGE_TEXT } from "@/src/lib/constants/cities-page";
 import { MEXICO_CITIES } from "@/src/lib/constants/mexico-cities";
@@ -9,7 +9,11 @@ import { CANADA_CITIES } from "@/src/lib/constants/canada-cities";
 import { Button } from "@/components/ui/button";
 
 function CitiesPage() {
-  const selectedCountry = useCountryStore((state) => state.selectedCountry);
+  const selectedCountry = useCountryAndCityStore(
+    (state) => state.selectedCountry,
+  );
+  const setCity = useCountryAndCityStore((state) => state.setCity);
+  const selectedCity = useCountryAndCityStore((state) => state.selectedCity);
 
   if (!selectedCountry) {
     return <div>Please select a country first</div>;
@@ -30,6 +34,7 @@ function CitiesPage() {
             key={city}
             className="text-lg p-8 border-custom-blue hover:bg-custom-blue"
             variant="outline"
+            onClick={() => setCity(city)}
           >
             {city}
           </Button>

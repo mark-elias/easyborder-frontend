@@ -1,7 +1,7 @@
 "use client";
 
-// zustand country store
-import { useCountryStore } from "../lib/store/useCountryStore";
+// zustand
+import { useCountryAndCityStore } from "../lib/store/useCountryAndCityStore";
 // constants
 import { COUNTRIES } from "../lib/constants/countries";
 import { HOME_PAGE_TEXT } from "../lib/constants/home-page";
@@ -12,7 +12,7 @@ import { useCountryRedirect } from "../hooks/useCountryRedirect";
 
 function HomePage() {
   // zustand
-  const setCountry = useCountryStore((state) => state.setCountry);
+  const setCountry = useCountryAndCityStore((state) => state.setCountry);
   // redirect hook
   useCountryRedirect();
 
