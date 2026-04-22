@@ -48,7 +48,7 @@ function CitiesPage() {
           {cities.map((city) => (
             <Button
               key={city}
-              className="text-lg p-6 border-custom-blue hover:bg-custom-blue"
+              className="text-lg p-6 border-custom-blue hover:bg-custom-blue hover:cursor-pointer"
               variant="outline"
               onClick={() => setCity(city)}
             >

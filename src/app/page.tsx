@@ -34,7 +34,7 @@ function HomePage() {
             name={country.name}
             onClick={() => setCountry(country.code)}
             variant="outline"
-            className="w-full text-3xl py-8 border-custom-blue hover:bg-custom-blue"
+            className="w-full text-3xl py-8 border-custom-blue hover:bg-custom-blue hover:cursor-pointer"
           />
         ))}
       </div>
