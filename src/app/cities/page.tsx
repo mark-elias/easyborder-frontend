@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 // zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // constants
@@ -7,17 +8,17 @@ import { MEXICO_CITIES } from "@/src/lib/constants/mexico-cities";
 import { CANADA_CITIES } from "@/src/lib/constants/canada-cities";
 // components
 import { Button } from "@/components/ui/button";
+// hooks
+import { useRequireCountry } from "@/src/hooks/useRequireCountry";
 
 function CitiesPage() {
-  const selectedCountry = useCountryAndCityStore(
-    (state) => state.selectedCountry,
-  );
+  // my custom hook; returns selected country value
+  // and redirects to homepage if country is NOT selected
+  const selectedCountry = useRequireCountry();
+  //zustand
   const setCity = useCountryAndCityStore((state) => state.setCity);
-  const selectedCity = useCountryAndCityStore((state) => state.selectedCity);
 
-  if (!selectedCountry) {
-    return <div>Please select a country first</div>;
-  }
+  if (!selectedCountry) return null;
 
   const cities = selectedCountry === "MX" ? MEXICO_CITIES : CANADA_CITIES;
 
