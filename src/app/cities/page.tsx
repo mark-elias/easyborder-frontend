@@ -29,11 +29,11 @@ function CitiesPage() {
         <h3 className="text-custom-grey">{CITIES_PAGE_TEXT.description}</h3>
       </div>
 
-      <section className="flex flex-wrap gap-5 lg:px-60">
+      <section className="flex flex-col lg:flex-row lg:flex-wrap gap-5 lg:px-60">
         {cities.map((city) => (
           <Button
             key={city}
-            className="text-lg p-8 border-custom-blue hover:bg-custom-blue"
+            className="text-lg p-6 border-custom-blue hover:bg-custom-blue"
             variant="outline"
             onClick={() => setCity(city)}
           >
