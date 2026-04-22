@@ -5,6 +5,8 @@ import { useCountryStore } from "@/src/lib/store/useCountryStore";
 import { CITIES_PAGE_TEXT } from "@/src/lib/constants/cities-page";
 import { MEXICO_CITIES } from "@/src/lib/constants/mexico-cities";
 import { CANADA_CITIES } from "@/src/lib/constants/canada-cities";
+// components
+import { Button } from "@/components/ui/button";
 
 function CitiesPage() {
   const selectedCountry = useCountryStore((state) => state.selectedCountry);
@@ -24,12 +26,13 @@ function CitiesPage() {
 
       <section className="flex flex-wrap gap-5 lg:px-60">
         {cities.map((city) => (
-          <div
+          <Button
             key={city}
-            className="border border-custom-blue p-5 rounded-xl hover:bg-custom-blue text-lg"
+            className="text-lg p-8 border-custom-blue hover:bg-custom-blue"
+            variant="outline"
           >
             {city}
-          </div>
+          </Button>
         ))}
       </section>
     </main>
