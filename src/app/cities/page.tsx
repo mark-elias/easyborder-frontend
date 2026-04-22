@@ -1,7 +1,8 @@
 "use client";
 // zustand
 import { useCountryStore } from "@/src/lib/store/useCountryStore";
-// cities constants
+// constants
+import { CITIES_PAGE_TEXT } from "@/src/lib/constants/cities-page";
 import { MEXICO_CITIES } from "@/src/lib/constants/mexico-cities";
 import { CANADA_CITIES } from "@/src/lib/constants/canada-cities";
 
@@ -15,13 +16,22 @@ function CitiesPage() {
   const cities = selectedCountry === "MX" ? MEXICO_CITIES : CANADA_CITIES;
 
   return (
-    <main className="min-h-screen p-5">
-      <h1 className="text-4xl font-bold mb-1">Select City</h1>
-      <h3>select the city you are crossing in from</h3>
+    <main className="flex flex-col items-center gap-10 min-h-screen p-5 my-10 lg:mt-20">
+      <div className="text-center">
+        <h1 className="text-4xl lg:text-5xl font-bold">
+          {CITIES_PAGE_TEXT.title}
+        </h1>
+        <h3 className="text-2xl lg:text-3xl text-custom-grey">
+          {CITIES_PAGE_TEXT.description}
+        </h3>
+      </div>
 
-      <section className="flex flex-wrap gap-5 mt-20">
+      <section className="flex flex-wrap gap-5 lg:px-60">
         {cities.map((city) => (
-          <div key={city} className="border-2 border-custom-blue p-5 rounded-xl hover:bg-custom-blue">
+          <div
+            key={city}
+            className="border border-custom-blue p-5 rounded-xl hover:bg-custom-blue text-lg"
+          >
             {city}
           </div>
         ))}
