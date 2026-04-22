@@ -18,12 +18,8 @@ function CitiesPage() {
   return (
     <main className="flex flex-col items-center gap-10 min-h-screen p-5 my-10 lg:mt-20">
       <div className="text-center">
-        <h1 className="text-4xl lg:text-5xl font-bold">
-          {CITIES_PAGE_TEXT.title}
-        </h1>
-        <h3 className="text-2xl lg:text-3xl text-custom-grey">
-          {CITIES_PAGE_TEXT.description}
-        </h3>
+        <h1>{CITIES_PAGE_TEXT.title}</h1>
+        <h3 className="text-custom-grey">{CITIES_PAGE_TEXT.description}</h3>
       </div>
 
       <section className="flex flex-wrap gap-5 lg:px-60">
