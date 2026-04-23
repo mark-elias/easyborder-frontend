@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+// Tanstack
+import { QueryProvider } from "../lib/lib/providers/QueryProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        {children}
+        {/* Tanstack Query Provider */}
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );
