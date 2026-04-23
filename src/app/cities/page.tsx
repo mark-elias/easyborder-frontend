@@ -50,7 +50,10 @@ function CitiesPage() {
               key={city}
               className="text-lg p-6 border-custom-blue hover:bg-custom-blue hover:cursor-pointer"
               variant="outline"
-              onClick={() => setCity(city)}
+              onClick={() => {
+                setCity(city);
+                router.push("/crossings");
+              }}
             >
               {city}
             </Button>
