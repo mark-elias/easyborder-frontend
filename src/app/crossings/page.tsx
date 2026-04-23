@@ -1,24 +1,30 @@
 "use client";
+// hooks
 import { useRequireCountryAndCity } from "@/src/hooks/useRequireCountryAndCity";
+import useCrossings from "@/src/hooks/useCrossings";
 
 function CrossingsPage() {
   const { selectedCountry, selectedCity } = useRequireCountryAndCity();
+
+  const {
+    data: crossings,
+    isLoading,
+    error,
+  } = useCrossings(selectedCountry, selectedCity);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <main className="p-5 min-h-screen">
       <section className="flex flex-col items-center justify-center border">
         <h3>Crossings for {selectedCity}</h3>
+        <p>{selectedCountry}</p>
+        <p>{selectedCity}</p>
         <ul className="">
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
-          <li>aldfksadjlk</li>
+          {crossings?.map((crossing) => (
+            <li key={crossing._id}>{crossing.portName}</li>
+          ))}
         </ul>
       </section>
     </main>
