@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 // interfaces/types
 import { Crossing } from "../types/types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api/";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
 
 function useCrossings(country: string | null, city: string | null) {
   const fetchCrossings = () =>
@@ -15,7 +15,7 @@ function useCrossings(country: string | null, city: string | null) {
       .then((res) => res.data.data); // backend returns {count, data}
 
   return useQuery({
-    queryKey: ["crossings"],
+    queryKey: ["crossings", country, city],
     queryFn: fetchCrossings,
   });
 }
