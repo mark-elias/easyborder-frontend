@@ -5,7 +5,7 @@ interface Country {
 }
 
 // Crossing (Port of Entry)
-interface Crossing {
+export interface Crossing {
   _id: string; // MongoDB ID
   portNumber: string;
   border: string;
