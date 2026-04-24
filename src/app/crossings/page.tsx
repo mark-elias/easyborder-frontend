@@ -13,7 +13,16 @@ function CrossingsPage() {
   } = useCrossings(selectedCountry, selectedCity);
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error)
+    return (
+      <div>
+        <div>Error: {error.message}</div>
+        <div>
+          Im currently setting up nginx, docker-compose, and SSL for https...
+          stay tuned
+        </div>
+      </div>
+    );
 
   return (
     <main className="p-5 min-h-screen">
