@@ -8,6 +8,7 @@ interface CountryAndCityStore {
   // actions
   setCountry: (country: "MX" | "CA") => void;
   setCity: (city: string) => void;
+  clearCity: () => void;
   reset: () => void;
 }
 
@@ -31,6 +32,9 @@ export const useCountryAndCityStore = create<CountryAndCityStore>(
 
     // to update just the city
     setCity: (city) => set({ selectedCity: city }),
+
+    // to clear just the city
+    clearCity: () => set({ selectedCity: null }),
 
     // for clearing country and city
     reset: () =>
