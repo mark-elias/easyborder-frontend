@@ -8,7 +8,6 @@ import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants/crossings-page";
 // hooks
 import { useRequireCountryAndCity } from "@/src/hooks/useRequireCountryAndCity";
 import useCrossings from "@/src/hooks/useCrossings";
-
 // shadcn
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +18,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+// components
+import { LoadingSpinnerWithText } from "@/src/components/molecules";
 
 function CrossingsPage() {
   const router = useRouter();
@@ -37,7 +38,7 @@ function CrossingsPage() {
     error,
   } = useCrossings(selectedCountry, selectedCity);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinnerWithText />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
