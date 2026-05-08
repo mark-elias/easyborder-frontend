@@ -1,19 +1,25 @@
-// Country
-interface Country {
-  name: string;
-  code: string;
-}
-
 // Crossing (Port of Entry)
 export interface Crossing {
   _id: string; // MongoDB ID
   portNumber: string;
-  border: string;
   portName: string;
-  crossingName?: string;
-  hours?: string;
-  portStatus?: string;
-  constructionNotice?: string;
+  crossingName: string;
+
+  originCountry: "MX" | "CA";
+  originCity: string;
+  destinationCity: string;
+
+  hours: string;
+  date: string;
+  time: string;
+
+  portStatus: "Open" | "Closed";
+  constructionNotice: string;
+
+  createdAt: string;
+  updatedAt: string;
+
+  __v: number;
 }
 
 // Lane detail structure
