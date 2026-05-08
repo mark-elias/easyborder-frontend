@@ -1,10 +1,16 @@
 "use client";
+
+import { useRouter } from "next/navigation";
+//zustand
+import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
+// constants
+import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants/crossings-page";
 // hooks
 import { useRequireCountryAndCity } from "@/src/hooks/useRequireCountryAndCity";
 import useCrossings from "@/src/hooks/useCrossings";
-// constants
+
 // shadcn
-// import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,9 +20,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-
 function CrossingsPage() {
+  const router = useRouter();
+  const clearCity = useCountryAndCityStore((state) => state.clearCity);
+
   const { selectedCountry, selectedCity } = useRequireCountryAndCity();
+
+  const handleChangeCity = () => {
+    clearCity();
+    router.push("/cities");
+  };
 
   const {
     data: crossings,
@@ -29,10 +42,22 @@ function CrossingsPage() {
 
   return (
     <main className="p-5 min-h-screen">
+      <Button
+        onClick={handleChangeCity}
+        variant="default"
+        className="p-4 hover:cursor-pointer"
+      >
+        {CROSSINGS_PAGE_TEXT.changeCityButtonText}
+      </Button>
       <section className="flex flex-col items-center justify-center">
         <div className="text-center mt-5 mb-14">
-          <h1>Crossings for {selectedCity}</h1>
-          <h3 className="text-custom-grey">select a port of entry</h3>
+          <h1>
+            {CROSSINGS_PAGE_TEXT.title}
+            {selectedCity}
+          </h1>
+          <h3 className="text-custom-grey">
+            {CROSSINGS_PAGE_TEXT.description}
+          </h3>
         </div>
         <div className="flex flex-wrap gap-10">
           {crossings?.map((crossing) => (
@@ -49,7 +74,7 @@ function CrossingsPage() {
 
               <CardContent className="flex flex-col gap-2 text-lg font-semibold my-5">
                 <p>
-                  Port Status:{" "}
+                  {CROSSINGS_PAGE_TEXT.portStatusText}
                   <span
                     className={`px-1 py-0.5 rounded uppercase text-sm ${
                       crossing.portStatus === "Open"
@@ -63,15 +88,15 @@ function CrossingsPage() {
                   </span>
                 </p>
                 <p>
-                  Hours of Operation:{" "}
+                  {CROSSINGS_PAGE_TEXT.hoursOfOperationText}
                   <span className="font-normal">{crossing.hours}</span>
                 </p>
                 <p>
-                  Port Number:{" "}
+                  {CROSSINGS_PAGE_TEXT.portNumberText}
                   <span className="font-normal">{crossing.portNumber}</span>
                 </p>
                 <p>
-                  Last Updated:{" "}
+                  {CROSSINGS_PAGE_TEXT.lastUpdateText}
                   <span className="font-normal">
                     {crossing.date} {crossing.time}
                   </span>
