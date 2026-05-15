@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 //zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // constants
@@ -68,50 +69,58 @@ function CrossingsPage() {
         </div>
         <div className="flex flex-wrap gap-10">
           {crossings?.map((crossing) => (
-            <Card
+            <Link
               key={crossing._id}
-              className="w-[350px] border border-custom-blue 
-              shadow-lg
-              hover:cursor-pointer hover:scale-[1.03]
-              transition-transform duration-200 ease-in-out"
+              href={`/wait-times/${crossing._id}`}
+              className="block"
             >
-              <CardHeader>
-                <div className="flex justify-between items-baseline">
-                  <CardTitle className="text-xl">{crossing.portName}</CardTitle>
-                  <CardDescription>Port #{crossing.portNumber}</CardDescription>
-                </div>
-                <CardDescription className="text-lg font-semibold">
-                  {crossing.crossingName}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="flex flex-col gap-2 font-semibold mt-3">
-                <p>
-                  {CROSSINGS_PAGE_TEXT.portStatusText}
-                  <span
-                    className={`px-1 py-0.5 rounded uppercase text-sm ${
-                      crossing.portStatus === "Open"
-                        ? "bg-custom-green"
-                        : crossing.portStatus === "Closed"
-                          ? "bg-custom-red"
-                          : "bg-custom-grey"
-                    }`}
-                  >
-                    {crossing.portStatus}
-                  </span>
-                </p>
-                <p>
-                  {CROSSINGS_PAGE_TEXT.hoursOfOperationText}
-                  <span className="font-normal">{crossing.hours}</span>
-                </p>
-              </CardContent>
-
-              {crossing.constructionNotice && (
-                <CardFooter className="text-xs text-custom-grey rounded border-0">
-                  {crossing.constructionNotice}
-                </CardFooter>
-              )}
-            </Card>
+              <Card
+                key={crossing._id}
+                className="w-[350px] border border-custom-blue
+                shadow-lg
+                hover:cursor-pointer hover:scale-[1.03]
+                transition-transform duration-200 ease-in-out"
+              >
+                <CardHeader>
+                  <div className="flex justify-between items-baseline">
+                    <CardTitle className="text-xl">
+                      {crossing.portName}
+                    </CardTitle>
+                    <CardDescription>
+                      Port #{crossing.portNumber}
+                    </CardDescription>
+                  </div>
+                  <CardDescription className="text-lg font-semibold">
+                    {crossing.crossingName}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-2 font-semibold mt-3">
+                  <p>
+                    {CROSSINGS_PAGE_TEXT.portStatusText}
+                    <span
+                      className={`px-1 py-0.5 rounded uppercase text-sm ${
+                        crossing.portStatus === "Open"
+                          ? "bg-custom-green"
+                          : crossing.portStatus === "Closed"
+                            ? "bg-custom-red"
+                            : "bg-custom-grey"
+                      }`}
+                    >
+                      {crossing.portStatus}
+                    </span>
+                  </p>
+                  <p>
+                    {CROSSINGS_PAGE_TEXT.hoursOfOperationText}
+                    <span className="font-normal">{crossing.hours}</span>
+                  </p>
+                </CardContent>
+                {crossing.constructionNotice && (
+                  <CardFooter className="text-xs text-custom-grey rounded border-0">
+                    {crossing.constructionNotice}
+                  </CardFooter>
+                )}
+              </Card>
+            </Link>
           ))}
         </div>
       </section>
