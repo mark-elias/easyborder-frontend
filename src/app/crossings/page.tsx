@@ -76,7 +76,7 @@ function CrossingsPage() {
             >
               <Card
                 key={crossing._id}
-                className="w-[350px] border border-custom-blue
+                className="w-[350px] h-full border border-custom-blue
                 shadow-lg
                 hover:cursor-pointer hover:scale-[1.03]
                 transition-transform duration-200 ease-in-out"
