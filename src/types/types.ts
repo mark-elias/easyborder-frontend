@@ -1,29 +1,32 @@
-// Crossing (Port of Entry)
+//==== Crossing
 export interface Crossing {
   _id: string; // MongoDB ID
+
   portNumber: string;
   portName: string;
-  crossingName: string;
+  crossingName?: string;
 
   originCountry: "MX" | "CA";
   originCity: string;
   destinationCity: string;
 
-  hours: string;
-  date: string;
-  time: string;
+  portStatus?: "Open" | "Closed" | "N/A";
+  hours?: string;
+  constructionNotice?: string;
 
-  portStatus: "Open" | "Closed";
-  constructionNotice: string;
+  // CBP's last update timestamp (from their API)
+  cbpLastUpdateDate?: string;
+  cbpLastUpdateTime?: string;
 
+  //mongoDB
   createdAt: string;
   updatedAt: string;
-
   __v: number;
 }
 
+//==== WaitTime
 // Lane detail structure
-interface LaneDetail {
+export interface LaneDetail {
   updateTime: string;
   operationalStatus: string;
   delayMinutes: number;
@@ -31,19 +34,22 @@ interface LaneDetail {
 }
 
 // Wait time structure
-interface WaitTime {
+export interface WaitTime {
   _id: string;
-  crossing: string | Crossing; // Could be populated
-  portNumber: string;
-  fetchedAt: string;
-  isCurrent: boolean;
-  passengerVehicle: {
+  crossing: string | Crossing;
+  // vehicle lanes
+  passengerVehicle?: {
     standard: LaneDetail;
     sentri: LaneDetail;
     ready: LaneDetail;
   };
-  pedestrian: {
+  // pedestrian lanes
+  pedestrian?: {
     standard: LaneDetail;
     ready: LaneDetail;
   };
+  // mongoDB
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
