@@ -14,6 +14,14 @@ export interface Crossing {
   hours?: string;
   constructionNotice?: string;
 
+  // lane availabilities
+  hasCommercialLanes: boolean;
+  hasPassengerLanes: boolean;
+  hasPedestrianLanes: boolean;
+  maxCommercialLanes: number;
+  maxPassengerLanes: number;
+  maxPedestrianLanes: number;
+
   // CBP's last update timestamp (from their API)
   cbpLastUpdateDate?: string;
   cbpLastUpdateTime?: string;
@@ -37,8 +45,14 @@ export interface LaneDetail {
 export interface WaitTime {
   _id: string;
   crossing: string | Crossing;
-  // vehicle lanes
-  passengerVehicle?: {
+
+  // commercial
+  commercial?: {
+    standard: LaneDetail;
+    fast: LaneDetail;
+  };
+  // passenger lanes
+  passenger?: {
     standard: LaneDetail;
     sentri: LaneDetail;
     ready: LaneDetail;

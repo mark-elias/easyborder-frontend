@@ -81,16 +81,16 @@ function WaitTimesPage() {
           </CardHeader>
           <CardContent className="text-3xl font-bold text-center my-3">
             <p
-              className={`${getWaitTimeColor(waitTimes.passengerVehicle?.standard.delayMinutes || 0)}`}
+              className={`${getWaitTimeColor(waitTimes.passenger?.standard.delayMinutes || 0)}`}
             >
-              {waitTimes.passengerVehicle?.standard.delayMinutes} mins
+              {waitTimes.passenger?.standard.delayMinutes} mins
             </p>
           </CardContent>
           <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.passengerVehicle?.standard.lanesOpen}</p>
+            <p>Lanes Open: {waitTimes.passenger?.standard.lanesOpen}</p>
             <p>
               Operational Status:{" "}
-              {waitTimes.passengerVehicle?.standard.operationalStatus}
+              {waitTimes.passenger?.standard.operationalStatus}
             </p>
           </CardFooter>
         </Card>
@@ -109,16 +109,16 @@ function WaitTimesPage() {
           </CardHeader>
           <CardContent className="text-3xl font-bold text-center my-3">
             <p
-              className={`${getWaitTimeColor(waitTimes.passengerVehicle?.ready.delayMinutes || 0)}`}
+              className={`${getWaitTimeColor(waitTimes.passenger?.ready.delayMinutes || 0)}`}
             >
-              {waitTimes.passengerVehicle?.ready.delayMinutes} mins
+              {waitTimes.passenger?.ready.delayMinutes} mins
             </p>
           </CardContent>
           <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.passengerVehicle?.ready.lanesOpen}</p>
+            <p>Lanes Open: {waitTimes.passenger?.ready.lanesOpen}</p>
             <p>
               Operational Status:{" "}
-              {waitTimes.passengerVehicle?.ready.operationalStatus}
+              {waitTimes.passenger?.ready.operationalStatus}
             </p>
           </CardFooter>
         </Card>
@@ -137,16 +137,16 @@ function WaitTimesPage() {
           </CardHeader>
           <CardContent className="text-3xl font-bold text-center my-3">
             <p
-              className={`${getWaitTimeColor(waitTimes.passengerVehicle?.sentri.delayMinutes || 0)}`}
+              className={`${getWaitTimeColor(waitTimes.passenger?.sentri.delayMinutes || 0)}`}
             >
-              {waitTimes.passengerVehicle?.sentri.delayMinutes} mins
+              {waitTimes.passenger?.sentri.delayMinutes} mins
             </p>
           </CardContent>
           <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.passengerVehicle?.sentri.lanesOpen}</p>
+            <p>Lanes Open: {waitTimes.passenger?.sentri.lanesOpen}</p>
             <p>
               Operational Status:{" "}
-              {waitTimes.passengerVehicle?.sentri.operationalStatus}
+              {waitTimes.passenger?.sentri.operationalStatus}
             </p>
           </CardFooter>
         </Card>
