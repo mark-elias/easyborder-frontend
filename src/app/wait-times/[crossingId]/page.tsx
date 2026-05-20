@@ -17,9 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // icons
-import { CarFront } from "lucide-react";
-import { Footprints } from "lucide-react";
-import { Heart } from "lucide-react";
+import { CarFront, Footprints, Heart, TruckIcon } from "lucide-react";
 // components
 import { LoadingSpinnerWithText } from "@/src/components/molecules";
 
@@ -38,10 +36,97 @@ function WaitTimesPage() {
 
   // helper function to determine wait time color
   const getWaitTimeColor = (minutes: number) => {
+    if (minutes === 0) return "text-custom-grey";
     if (minutes <= 30) return "text-custom-green";
     if (minutes <= 60) return "text-custom-yellow";
     return "text-custom-red";
   };
+
+  //
+  const getAvailableLaneTypes = () => {
+    if (!waitTimes) return [];
+
+    const availableLanes = [];
+
+    // Passenger lanes
+    if (waitTimes.passenger) {
+      if (waitTimes.passenger.standard) {
+        availableLanes.push({
+          type: "Passenger",
+          lane: "General",
+          data: waitTimes.passenger.standard,
+          color: "text-custom-blue",
+          icon: "CarFront",
+        });
+      }
+      if (waitTimes.passenger.ready) {
+        availableLanes.push({
+          type: "Passenger",
+          lane: "Ready Lane",
+          data: waitTimes.passenger.ready,
+          color: "text-custom-blue",
+          icon: "CarFront",
+        });
+      }
+      if (waitTimes.passenger.sentri) {
+        availableLanes.push({
+          type: "Passenger",
+          lane: "SENTRI",
+          data: waitTimes.passenger.sentri,
+          color: "text-custom-blue",
+          icon: "CarFront",
+        });
+      }
+    }
+
+    // Pedestrian lanes
+    if (waitTimes.pedestrian) {
+      if (waitTimes.pedestrian.standard) {
+        availableLanes.push({
+          type: "Pedestrian",
+          lane: "General",
+          data: waitTimes.pedestrian.standard,
+          color: "text-custom-teal",
+          icon: "Footprints",
+        });
+      }
+      if (waitTimes.pedestrian.ready) {
+        availableLanes.push({
+          type: "Pedestrian",
+          lane: "Ready Lane",
+          data: waitTimes.pedestrian.ready,
+          color: "text-custom-teal",
+          icon: "Footprints",
+        });
+      }
+    }
+
+    // Commercial lanes
+    if (waitTimes.commercial) {
+      if (waitTimes.commercial.standard) {
+        availableLanes.push({
+          type: "Commercial",
+          lane: "General",
+          data: waitTimes.commercial.standard,
+          color: "text-custom-yellow",
+          icon: "Truck",
+        });
+      }
+      if (waitTimes.commercial.fast) {
+        availableLanes.push({
+          type: "Commercial",
+          lane: "Fast Lane",
+          data: waitTimes.commercial.fast,
+          color: "text-custom-yellow",
+          icon: "Truck",
+        });
+      }
+    }
+
+    return availableLanes;
+  };
+
+  const availableLanes = getAvailableLaneTypes();
 
   if (isLoading) return <LoadingSpinnerWithText />;
   if (error) return <div>Error: {error.message}</div>;
@@ -65,147 +150,43 @@ function WaitTimesPage() {
           </h3>
         </div>
       </section>
-      <section className="flex flex-wrap gap-5">
-        <Card className="w-[300px] shadow-2xl">
-          <CardHeader>
-            <div className="flex justify-between">
-              <div className="flex gap-2 items-center text-custom-grey">
-                <CarFront className="size-6"></CarFront>
-                <CardDescription className="text-lg font-semibold">
-                  Vehicular
-                </CardDescription>
+      <section className="flex flex-wrap gap-10">
+        {availableLanes.map((lane, index) => (
+          <Card
+            key={index}
+            className="w-[300px] shadow-lg
+                hover:cursor-pointer hover:scale-[1.03]
+                transition-transform duration-200 ease-in-out"
+          >
+            <CardHeader>
+              <div className="flex justify-between">
+                <div className="flex gap-2 items-center text-custom-grey">
+                  {lane.icon === "Truck" && <TruckIcon className="size-6" />}
+                  {lane.icon === "CarFront" && <CarFront className="size-6" />}
+                  {lane.icon === "Footprints" && (
+                    <Footprints className="size-6" />
+                  )}
+                  <CardDescription className="text-lg font-semibold">
+                    {lane.type}
+                  </CardDescription>
+                </div>
+                <Heart className="hover:text-custom-red hover:cursor-pointer" />
               </div>
-              <Heart className="hover:text-custom-red hover:cursor-pointer"></Heart>
-            </div>
-            <CardTitle className="font-semibold text-2xl">General</CardTitle>
-          </CardHeader>
-          <CardContent className="text-3xl font-bold text-center my-3">
-            <p
-              className={`${getWaitTimeColor(waitTimes.passenger?.standard.delayMinutes || 0)}`}
-            >
-              {waitTimes.passenger?.standard.delayMinutes} mins
-            </p>
-          </CardContent>
-          <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.passenger?.standard.lanesOpen}</p>
-            <p>
-              Operational Status:{" "}
-              {waitTimes.passenger?.standard.operationalStatus}
-            </p>
-          </CardFooter>
-        </Card>
-        <Card className="w-[300px] shadow-2xl">
-          <CardHeader>
-            <div className="flex justify-between">
-              <div className="flex gap-2 items-center text-custom-grey">
-                <CarFront className="size-6"></CarFront>
-                <CardDescription className="text-lg font-semibold">
-                  Vehicular
-                </CardDescription>
-              </div>
-              <Heart className="hover:text-custom-red hover:cursor-pointer"></Heart>
-            </div>
-            <CardTitle className="font-semibold text-2xl">Ready</CardTitle>
-          </CardHeader>
-          <CardContent className="text-3xl font-bold text-center my-3">
-            <p
-              className={`${getWaitTimeColor(waitTimes.passenger?.ready.delayMinutes || 0)}`}
-            >
-              {waitTimes.passenger?.ready.delayMinutes} mins
-            </p>
-          </CardContent>
-          <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.passenger?.ready.lanesOpen}</p>
-            <p>
-              Operational Status:{" "}
-              {waitTimes.passenger?.ready.operationalStatus}
-            </p>
-          </CardFooter>
-        </Card>
-        <Card className="w-[300px] shadow-2xl">
-          <CardHeader>
-            <div className="flex justify-between">
-              <div className="flex gap-2 items-center text-custom-grey">
-                <CarFront className="size-6"></CarFront>
-                <CardDescription className="text-lg font-semibold">
-                  Vehicular
-                </CardDescription>
-              </div>
-              <Heart className="hover:text-custom-red hover:cursor-pointer"></Heart>
-            </div>
-            <CardTitle className="font-semibold text-2xl">Sentri</CardTitle>
-          </CardHeader>
-          <CardContent className="text-3xl font-bold text-center my-3">
-            <p
-              className={`${getWaitTimeColor(waitTimes.passenger?.sentri.delayMinutes || 0)}`}
-            >
-              {waitTimes.passenger?.sentri.delayMinutes} mins
-            </p>
-          </CardContent>
-          <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.passenger?.sentri.lanesOpen}</p>
-            <p>
-              Operational Status:{" "}
-              {waitTimes.passenger?.sentri.operationalStatus}
-            </p>
-          </CardFooter>
-        </Card>
-        <Card className="w-[300px] shadow-2xl">
-          <CardHeader>
-            <div className="flex justify-between">
-              <div className="flex gap-2 items-center text-custom-grey">
-                <Footprints className="size-6"></Footprints>
-                <CardDescription className="text-lg font-semibold">
-                  Pedestrian
-                </CardDescription>
-              </div>
-              <Heart className="hover:text-custom-red hover:cursor-pointer"></Heart>
-            </div>
-            <CardTitle className="font-semibold text-2xl">General</CardTitle>
-          </CardHeader>
-          <CardContent className="text-3xl font-bold text-center my-3">
-            <p
-              className={`${getWaitTimeColor(waitTimes.pedestrian?.standard.delayMinutes || 0)}`}
-            >
-              {waitTimes.pedestrian?.standard.delayMinutes} mins
-            </p>
-          </CardContent>
-          <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.pedestrian?.standard.lanesOpen}</p>
-            <p>
-              Operational Status:{" "}
-              {waitTimes.pedestrian?.standard.operationalStatus}
-            </p>
-          </CardFooter>
-        </Card>
-        <Card className="w-[300px] shadow-2xl">
-          <CardHeader>
-            <div className="flex justify-between">
-              <div className="flex gap-2 items-center text-custom-grey">
-                <Footprints className="size-6"></Footprints>
-                <CardDescription className="text-lg font-semibold">
-                  Pedestrian
-                </CardDescription>
-              </div>
-              <Heart className="hover:text-custom-red hover:cursor-pointer"></Heart>
-            </div>
-            <CardTitle className="font-semibold text-2xl">Ready</CardTitle>
-          </CardHeader>
-          <CardContent className="text-3xl font-bold text-center my-3">
-            <p
-              className={`${getWaitTimeColor(waitTimes.pedestrian?.ready.delayMinutes || 0)}`}
-            >
-              {waitTimes.pedestrian?.ready.delayMinutes} mins
-            </p>
-          </CardContent>
-          <CardFooter className="border-0 flex flex-col items-start">
-            <p>Lanes Open: {waitTimes.pedestrian?.ready.lanesOpen}</p>
-            <p>
-              Operational Status:{" "}
-              {waitTimes.pedestrian?.ready.operationalStatus}
-            </p>
-          </CardFooter>
-        </Card>
+              <CardTitle className="font-semibold text-2xl">
+                {lane.lane}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-3xl font-bold text-center my-3">
+              <p className={getWaitTimeColor(lane.data.delayMinutes || 0)}>
+                {lane.data.delayMinutes} mins
+              </p>
+            </CardContent>
+            <CardFooter className="border-0 flex flex-col items-start">
+              <p>Lanes Open: {lane.data.lanesOpen}</p>
+              <p>Operational Status: {lane.data.operationalStatus}</p>
+            </CardFooter>
+          </Card>
+        ))}
       </section>
     </main>
   );

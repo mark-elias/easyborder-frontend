@@ -19,7 +19,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BadgeCheck } from "lucide-react";
+import { BadgeCheck, CarFront, Footprints, TruckIcon } from "lucide-react";
 
 // components
 import { LoadingSpinnerWithText } from "@/src/components/molecules";
@@ -63,10 +63,12 @@ function CrossingsPage() {
             {CROSSINGS_PAGE_TEXT.description}
           </h3>
         </div>
-        <div className="flex gap-1 mt-10 mb-5 text-sm items-center text-custom-green">
-          <BadgeCheck className="size-3.5" />
-          <p>Official CBP data</p>
-        </div>
+        <section>
+          <div className="flex gap-1 mt-10 mb-5 text-sm items-center text-custom-green">
+            <BadgeCheck className="size-3.5" />
+            <p>Official CBP data</p>
+          </div>
+        </section>
         <div className="flex flex-wrap gap-10">
           {crossings?.map((crossing) => (
             <Link
@@ -76,7 +78,7 @@ function CrossingsPage() {
             >
               <Card
                 key={crossing._id}
-                className="w-[350px] h-full border border-custom-blue
+                className="w-[350px] h-full
                 shadow-lg
                 hover:cursor-pointer hover:scale-[1.03]
                 transition-transform duration-200 ease-in-out"
@@ -113,6 +115,26 @@ function CrossingsPage() {
                     {CROSSINGS_PAGE_TEXT.hoursOfOperationText}
                     <span className="font-normal">{crossing.hours}</span>
                   </p>
+                  <section className="flex gap-6 text-custom-grey mt-1">
+                    {crossing.hasCommercialLanes && (
+                      <div className="flex flex-col items-center">
+                        <TruckIcon />
+                        <p>Commercial</p>
+                      </div>
+                    )}
+                    {crossing.hasPassengerLanes && (
+                      <div className="flex flex-col items-center">
+                        <CarFront />
+                        <p>Passenger</p>
+                      </div>
+                    )}
+                    {crossing.hasPedestrianLanes && (
+                      <div className="flex flex-col items-center">
+                        <Footprints />
+                        <p>Pedestrian</p>
+                      </div>
+                    )}
+                  </section>
                 </CardContent>
                 {crossing.constructionNotice && (
                   <CardFooter className="text-xs text-custom-grey rounded border-0">
