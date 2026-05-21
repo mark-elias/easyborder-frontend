@@ -26,7 +26,7 @@ function CitiesPage() {
 
   const handleChangeCountry = () => {
     reset();
-    router.push("/");
+    router.push("/country");
   };
 
   return (
