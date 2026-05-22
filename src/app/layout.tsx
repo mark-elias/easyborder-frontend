@@ -5,6 +5,8 @@ import "./globals.css";
 import { QueryProvider } from "../lib/lib/providers/QueryProvider";
 // componenets
 import { NavBar } from "../components/organisms";
+// toast
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,6 +31,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <NavBar />
             <main className="flex-1 p-5">{children}</main>
+            <Toaster/>
           </div>
         </QueryProvider>
       </body>
