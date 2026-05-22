@@ -23,15 +23,9 @@ function CountryPage() {
   const selectionCountries = [COUNTRIES.MX, COUNTRIES.CA];
 
   return (
-    <main className="min-h-screen p-5">
-      <Button
-        onClick={() => router.push("/")}
-        variant="default"
-        className="p-4 hover:cursor-pointer"
-      >
-        Go Back
-      </Button>
-      <section className="flex flex-col justify-center items-center gap-10">
+    <main className="h-screen p-5">
+      <Button onClick={() => router.push("/")}>Go Back</Button>
+      <section className="flex flex-col justify-center items-center gap-10 h-full">
         <div className="text-center">
           <h1>{HOME_PAGE_TEXT.title}</h1>
           <h3 className="text-custom-grey">{HOME_PAGE_TEXT.description}</h3>
@@ -45,7 +39,7 @@ function CountryPage() {
               name={country.name}
               onClick={() => setCountry(country.code)}
               variant="outline"
-              className="w-full text-3xl py-8 border-custom-blue hover:bg-custom-blue hover:cursor-pointer"
+              className="w-full text-3xl py-4"
             />
           ))}
         </div>

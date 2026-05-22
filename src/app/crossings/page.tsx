@@ -46,11 +46,7 @@ function CrossingsPage() {
 
   return (
     <main className="p-5 min-h-screen">
-      <Button
-        onClick={handleChangeCity}
-        variant="default"
-        className="p-4 hover:cursor-pointer"
-      >
+      <Button onClick={handleChangeCity}>
         {CROSSINGS_PAGE_TEXT.changeCityButtonText}
       </Button>
       <section className="flex flex-col items-center justify-center">

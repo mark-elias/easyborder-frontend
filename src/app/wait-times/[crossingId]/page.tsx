@@ -134,13 +134,7 @@ function WaitTimesPage() {
 
   return (
     <main className="p-5 min-h-screen">
-      <Button
-        onClick={handleGoBack}
-        variant="default"
-        className="p-4 hover:cursor-pointer"
-      >
-        Go Back
-      </Button>
+      <Button onClick={handleGoBack}>Go Back</Button>
 
       <section className="flex flex-col items-center justify-center">
         <div className="text-center mt-5 mb-14">

@@ -33,8 +33,6 @@ function CitiesPage() {
     <main className="min-h-screen p-5">
       <Button
         onClick={handleChangeCountry}
-        variant="default"
-        className="p-4 hover:cursor-pointer"
       >
         Change Country
       </Button>
@@ -48,8 +46,8 @@ function CitiesPage() {
           {cities.map((city) => (
             <Button
               key={city}
-              className="text-lg p-6 border-custom-blue hover:bg-custom-blue hover:cursor-pointer"
               variant="outline"
+              className="text-lg"
               onClick={() => {
                 setCity(city);
                 router.push("/crossings");
