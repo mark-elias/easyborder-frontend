@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 //zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
+// components
+import { LoadingSpinnerWithText } from "@/src/components/molecules";
 // constants
 import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants/crossings-page";
 // hooks
@@ -20,9 +22,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BadgeCheck, CarFront, Footprints, TruckIcon } from "lucide-react";
-
-// components
-import { LoadingSpinnerWithText } from "@/src/components/molecules";
 
 function CrossingsPage() {
   const router = useRouter();
@@ -45,12 +44,12 @@ function CrossingsPage() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <main className="p-5 min-h-screen">
+    <>
       <Button onClick={handleChangeCity}>
         {CROSSINGS_PAGE_TEXT.changeCityButtonText}
       </Button>
-      <section className="flex flex-col items-center justify-center">
-        <div className="text-center mt-5">
+      <div className="flex flex-col items-center justify-center">
+        <section className="text-center mt-5">
           <h1>
             {CROSSINGS_PAGE_TEXT.title}
             {selectedCity}
@@ -58,14 +57,14 @@ function CrossingsPage() {
           <h3 className="text-custom-grey">
             {CROSSINGS_PAGE_TEXT.description}
           </h3>
-        </div>
+        </section>
         <section>
           <div className="flex gap-1 mt-10 mb-5 text-sm items-center text-custom-green">
             <BadgeCheck className="size-3.5" />
             <p>Official CBP data</p>
           </div>
         </section>
-        <div className="flex flex-wrap gap-10">
+        <section className="flex flex-wrap gap-10">
           {crossings?.map((crossing) => (
             <Link
               key={crossing._id}
@@ -140,9 +139,9 @@ function CrossingsPage() {
               </Card>
             </Link>
           ))}
-        </div>
-      </section>
-    </main>
+        </section>
+      </div>
+    </>
   );
 }
 

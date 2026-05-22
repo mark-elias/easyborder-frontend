@@ -30,18 +30,14 @@ function CitiesPage() {
   };
 
   return (
-    <main className="min-h-screen p-5">
-      <Button
-        onClick={handleChangeCountry}
-      >
-        Change Country
-      </Button>
+    <>
+      <Button onClick={handleChangeCountry}>Change Country</Button>
 
       <div className="flex flex-col items-center gap-10 my-10">
-        <div className="text-center">
+        <section className="text-center">
           <h1>{CITIES_PAGE_TEXT.title}</h1>
           <h3 className="text-custom-grey">{CITIES_PAGE_TEXT.description}</h3>
-        </div>
+        </section>
         <section className="flex flex-col lg:flex-row lg:flex-wrap gap-5 lg:px-60">
           {cities.map((city) => (
             <Button
@@ -58,7 +54,7 @@ function CitiesPage() {
           ))}
         </section>
       </div>
-    </main>
+    </>
   );
 }
 

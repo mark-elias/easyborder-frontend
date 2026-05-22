@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import useWaitTimes from "@/src/hooks/useWaitTimes";
 // zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
+// components
+import { LoadingSpinnerWithText } from "@/src/components/molecules";
 // shadcn
 import { Button } from "@/components/ui/button";
 import {
@@ -18,8 +20,6 @@ import {
 } from "@/components/ui/card";
 // icons
 import { CarFront, Footprints, Heart, TruckIcon } from "lucide-react";
-// components
-import { LoadingSpinnerWithText } from "@/src/components/molecules";
 
 function WaitTimesPage() {
   const router = useRouter();
@@ -133,7 +133,7 @@ function WaitTimesPage() {
   if (!waitTimes) return <div>No wait times found</div>;
 
   return (
-    <main className="p-5 min-h-screen">
+    <>
       <Button onClick={handleGoBack}>Go Back</Button>
 
       <section className="flex flex-col items-center justify-center">
@@ -149,8 +149,8 @@ function WaitTimesPage() {
           <Card
             key={index}
             className="w-[300px] shadow-lg
-                hover:cursor-pointer hover:scale-[1.03]
-                transition-transform duration-200 ease-in-out"
+            hover:cursor-pointer hover:scale-[1.03]
+            transition-transform duration-200 ease-in-out"
           >
             <CardHeader>
               <div className="flex justify-between">
@@ -182,7 +182,7 @@ function WaitTimesPage() {
           </Card>
         ))}
       </section>
-    </main>
+    </>
   );
 }
 

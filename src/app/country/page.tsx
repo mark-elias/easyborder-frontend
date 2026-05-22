@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 // zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // constants
@@ -10,10 +9,8 @@ import { HOME_PAGE_TEXT } from "@/src/lib/constants/home-page";
 import { CountryButton } from "@/src/components/molecules";
 // hooks
 import { useCountryRedirect } from "@/src/hooks/useCountryRedirect";
-import { Button } from "@/components/ui/button";
 
 function CountryPage() {
-  const router = useRouter();
   // zustand
   const setCountry = useCountryAndCityStore((state) => state.setCountry);
   // redirect hook
@@ -23,14 +20,12 @@ function CountryPage() {
   const selectionCountries = [COUNTRIES.MX, COUNTRIES.CA];
 
   return (
-    <main className="h-screen p-5">
-      <Button onClick={() => router.push("/")}>Go Back</Button>
-      <section className="flex flex-col justify-center items-center gap-10 h-full">
+    <main className="mt-10">
+      <section className="flex flex-col justify-start items-center gap-10 h-full">
         <div className="text-center">
           <h1>{HOME_PAGE_TEXT.title}</h1>
           <h3 className="text-custom-grey">{HOME_PAGE_TEXT.description}</h3>
         </div>
-
         <div className=" flex flex-col gap-5 w-full lg:max-w-xl ">
           {selectionCountries.map((country) => (
             <CountryButton
