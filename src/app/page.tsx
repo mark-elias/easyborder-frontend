@@ -2,19 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { BadgeCheck, Zap, Users, CircleUser } from "lucide-react";
+import { BadgeCheck, Zap, Users } from "lucide-react";
+import { NavBar } from "../components/organisms";
 
 function HomePage() {
   const router = useRouter();
 
   return (
     <main className="flex flex-col h-screen">
-      <nav className="bg-custom-blue flex justify-between p-3">
-        <div>EasyBorder</div>
-        <div>selected City</div>
-        <CircleUser></CircleUser>
-      </nav>
-      <section className="flex flex-col items-center justify-center gap-10 border h-full">
+      <NavBar></NavBar>
+      <section className="flex flex-col items-center justify-center gap-10 h-full p-5">
         <section>
           <p>
             Border wait times app where users can see various travel types and
@@ -37,15 +34,10 @@ function HomePage() {
           </div>
         </section>
         <section className="flex gap-10">
-          <Button
-            className="p-5 bg-custom-blue hover:cursor-pointer"
-            onClick={() => router.push("/country")}
-          >
+          <Button variant="action" onClick={() => router.push("/country")}>
             See Wait Times
           </Button>
-          <Button className="border border-custom-blue p-5 hover:bg-custom-blue hover:cursor-pointer">
-            Register
-          </Button>
+          <Button>Register</Button>
         </section>
       </section>
     </main>
