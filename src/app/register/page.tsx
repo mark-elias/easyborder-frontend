@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import useRegister, { RegisterError } from "@/src/hooks/useRegister";
 import { AxiosError } from "axios";
 // ui
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -56,7 +57,10 @@ function RegisterPage() {
         console.log("Registration successful!", data.token);
 
         // can store tocken and redirect later
-        // router.push("/login");
+        toast.success("Account Created Successfully", {
+          position: "top-center",
+        });
+        setTimeout(() => router.push("/login"), 2000);
       },
       onError: (error: AxiosError<RegisterError>) => {
         console.error("Registration failed:", error);
