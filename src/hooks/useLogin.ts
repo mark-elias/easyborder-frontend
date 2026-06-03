@@ -28,6 +28,7 @@ function useLogin() {
   const loginUser = (data: LoginPayload) =>
     axios
       .post<LoginSuccessResponse>(`${API_URL}/auth/login`, data, {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },

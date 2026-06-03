@@ -26,6 +26,7 @@ function useRegister() {
   const registerUser = (data: RegisterPayload) =>
     axios
       .post<RegisterResponse>(`${API_URL}/auth/register`, data, {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
