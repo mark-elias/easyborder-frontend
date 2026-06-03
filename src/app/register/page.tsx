@@ -88,7 +88,7 @@ function RegisterPage() {
                 <Input
                   id="email"
                   type="email"
-                  className="py-6 border border-custom-grey text-xl"
+                  className="py-5 border border-custom-grey text-xl"
                   placeholder="john@example.com"
                   {...register("email")}
                 />
@@ -106,7 +106,7 @@ function RegisterPage() {
                 <Input
                   id="password"
                   type="password"
-                  className="py-6 border border-custom-grey text-xl"
+                  className="py-5 border border-custom-grey text-xl"
                   placeholder="Enter your password"
                   {...register("password")}
                 />
