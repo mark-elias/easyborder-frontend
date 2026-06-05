@@ -1,37 +1,17 @@
-// register =====
-// register payload
-export interface RegisterPayload {
+// login and register payloads
+export interface AuthPayload {
   email: string;
   password: string;
 }
 
-// backend success response
-export interface RegisterResponse {
-  token: string;
-}
-
-// backend error response
-export interface RegisterError {
-  message: string;
-  error: string;
-  statusCode: number;
-}
-
-// login =====
-// login payload
-export interface LoginPayload {
-  email: string;
-  password: string;
-}
-
-// success response
-export interface LoginSuccessResponse {
+// login & register success response
+export interface AuthSuccessResponse {
   success: boolean;
   message: string;
 }
 
-// error response
-export interface LoginErrorResponse {
+// login & register error response
+export interface AuthErrorResponse {
   message: string;
   error: string;
   statusCode: number;
@@ -41,6 +21,7 @@ export interface LoginErrorResponse {
 export interface CurrentUser {
   _id: string;
   email: string;
+  username?: string;
   createdAt: string;
   updatedAt: string;
 }
