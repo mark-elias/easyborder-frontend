@@ -1,53 +1,14 @@
-import axios, { AxiosError } from "axios";
-import { useMutation } from "@tanstack/react-query";
-
-// login payload
-interface LoginPayload {
-  email: string;
-  password: string;
-}
-
-// success response
-interface LoginSuccessResponse {
-  success: boolean;
-  message: string;
-}
-
-// error response
-export interface LoginErrorResponse {
-  message: string;
-  error: string;
-  statusCode: number;
-}
-
-// need to refactor and make http client and service
-const API_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001/api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { authService } from "../services/authService";
 
 function useLogin() {
-  const loginUser = (data: LoginPayload) =>
-    axios
-      .post<LoginSuccessResponse>(`${API_URL}/auth/login`, data, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => res.data);
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: loginUser,
+    mutationFn: authService.login,
+    // logging in should refresh currentUser
     onSuccess: () => {
-      console.log("Login successful");
-      // I can store the token in local storage or cookie
-    },
-    onError: (error: AxiosError<LoginErrorResponse>) => {
-      const errorData = error.response?.data;
-      console.error("Login failed:", {
-        statusCode: errorData?.statusCode,
-        message: errorData?.message,
-        error: errorData?.error,
-      });
+      queryClient.invalidateQueries({ queryKey: ["currentUser"] });
     },
   });
 }
