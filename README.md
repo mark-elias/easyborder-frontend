@@ -23,6 +23,13 @@ data with a community feed where travelers share real photos
 and updates directly from the crossing so you always know what is 
 actually happening at the border before you leave the house.
 
+## Features
+- Border wait times for all US ports of entry and crossing methods
+- Compare wait times across multiple crossings and lanes
+- Save your favorite crossings for quick access
+- Community feed where travelers post updates and photos about their border wait experiences
+- Authentication with passport.js, jwts, and cookies.
+
 ## Tech Stack
 **Frontend:** Typescript, Next.js, Tailwind, Shadcn, Bun, Tanstack Query, React-Hook-Form, Zod, Zustand
 
