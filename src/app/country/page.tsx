@@ -3,9 +3,7 @@
 // zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // constants
-import { COUNTRIES } from "@/src/lib/constants/countries";
-// import { HOME_PAGE_TEXT } from "@/src/lib/constants/country-page";
-import { COUNTRY_PAGE_TEXT } from "@/src/lib/constants";
+import { ORIGIN_COUNTRIES, COUNTRY_PAGE_TEXT } from "@/src/lib/constants";
 // components
 import { CountryButton } from "@/src/components/molecules";
 // hooks
@@ -17,9 +15,6 @@ function CountryPage() {
   // redirect hook
   useCountryRedirect();
 
-  // only show mexico and canada
-  const selectionCountries = [COUNTRIES.MX, COUNTRIES.CA];
-
   return (
     <main className="mt-10">
       <section className="flex flex-col justify-start items-center gap-10 h-full">
@@ -28,7 +23,7 @@ function CountryPage() {
           <h3 className="text-custom-grey">{COUNTRY_PAGE_TEXT.description}</h3>
         </div>
         <div className=" flex flex-col gap-5 w-full lg:max-w-xl ">
-          {selectionCountries.map((country) => (
+          {Object.values(ORIGIN_COUNTRIES).map((country) => (
             <CountryButton
               key={country.code}
               flag={country.flag}
