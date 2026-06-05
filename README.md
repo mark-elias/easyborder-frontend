@@ -4,7 +4,7 @@
 ## About
 EasyBorder provides reliable border wait times using official CBP data for all port of entries and crossing methods. Compare crossings, save your favorite lanes, and share your border crossing experiences with other travelers.
 
-### The Problem
+## The Problem
 The San Diego/Tijuana broder is the busiest land border crossing 
 in the world with 200,000 to 300,000 people crossing daily. For 
 thousands of them, knowing the wait time is not optional. It is 
