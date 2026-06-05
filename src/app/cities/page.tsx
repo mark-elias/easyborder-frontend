@@ -3,9 +3,11 @@ import { useRouter } from "next/navigation";
 // zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // constants
-import { CITIES_PAGE_TEXT } from "@/src/lib/constants/cities-page";
-import { MEXICO_CITIES } from "@/src/lib/constants/mexico-cities";
-import { CANADA_CITIES } from "@/src/lib/constants/canada-cities";
+import {
+  CITIES_PAGE_TEXT,
+  MEXICO_CITIES,
+  CANADA_CITIES,
+} from "@/src/lib/constants";
 // components
 import { Button } from "@/components/ui/button";
 // hooks

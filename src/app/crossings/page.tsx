@@ -7,7 +7,7 @@ import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // components
 import { LoadingSpinnerWithText } from "@/src/components/molecules";
 // constants
-import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants/crossings-page";
+import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants";
 // hooks
 import { useRequireCountryAndCity } from "@/src/hooks/useRequireCountryAndCity";
 import useCrossings from "@/src/hooks/useCrossings";
