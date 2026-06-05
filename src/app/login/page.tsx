@@ -1,14 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-// zod & react hook form
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-// hooks
-// import useLogin, { RegisterError } from "@/src/hooks/useRegister";
-import useLogin, { LoginErrorResponse } from "@/src/hooks/useLogin";
-import { AxiosError } from "axios";
 // ui
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -27,8 +19,17 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Spinner } from "@/components/ui/spinner";
+// zod validation
+import * as z from "zod";
+// RHF
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+// hooks
+import useLogin from "@/src/hooks/useLogin";
+import { AxiosError } from "axios";
+import { AuthErrorResponse } from "@/src/types";
 
-// zod shcema
+// zod shcema =====
 const loginSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
   password: z.string().min(8, "Password must be at least 8 characters"),
@@ -38,15 +39,14 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 function LoginPage() {
   const router = useRouter();
-  // register hook
+  // login hook
   const loginMutation = useLogin();
 
-  // reacthookfrom & zod setup
+  // reacthookfrom
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
@@ -56,15 +56,19 @@ function LoginPage() {
     loginMutation.mutate(values, {
       onSuccess: () => {
         console.log("Login successful");
-
-        // can store tocken and redirect later
         toast.success("Logged in successfully", {
           position: "top-center",
         });
-        setTimeout(() => router.push("/"), 2000);
+        setTimeout(() => router.push("/"), 1000);
       },
-      onError: (error: AxiosError<LoginErrorResponse>) => {
-        console.error("Login failed:", error);
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError<AuthErrorResponse>;
+        console.error("Login failed:", axiosError.response?.data?.message);
+        toast.error(
+          axiosError.response?.data?.message ||
+            "Login failed, please try again",
+          { position: "top-center" },
+        );
       },
     });
   };
@@ -130,7 +134,7 @@ function LoginPage() {
                 >
                   {loginMutation.isPending ? (
                     <span className="flex items-center justify-center gap-2">
-                      <Spinner className="w-4 h-4" />
+                      <Spinner className="w-4 h-6" />
                       Logging In...
                     </span>
                   ) : (
