@@ -1,22 +1,23 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-// interfaces/types
-import { Crossing } from "../types/types";
+// services
+import { crossingsService } from "@/src/services/crossingsService";
+// constants and types
+import { OriginCountryCode } from "../lib/constants";
+import { OriginCity } from "../types";
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001/api";
-
-function useCrossings(country: string | null, city: string | null) {
-  const fetchCrossings = () =>
-    axios
-      .get<{
-        count: number;
-        data: Crossing[];
-      }>(`${API_URL}/crossings?originCountry=${country}&originCity=${city}`)
-      .then((res) => res.data.data); // backend returns {count, data}
-
+function useCrossings(
+  country: OriginCountryCode | null,
+  city: OriginCity | null,
+) {
   return useQuery({
     queryKey: ["crossings", country, city],
-    queryFn: fetchCrossings,
+    queryFn: () => {
+      // null check for country and city
+      if (!country || !city) throw new Error("country and city are required");
+
+      return crossingsService.getCrossings(country, city);
+    },
+    enabled: !!country && !!city,
   });
 }
 
