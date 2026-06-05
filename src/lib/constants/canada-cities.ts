@@ -21,3 +21,5 @@ export const CANADA_CITIES = [
   "Windsor",
   "Woodstock",
 ] as const;
+
+export type CanadaCity = (typeof CANADA_CITIES)[number];

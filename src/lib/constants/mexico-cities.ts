@@ -27,3 +27,5 @@ export const MEXICO_CITIES = [
   "Tecate",
   "Tijuana",
 ] as const;
+
+export type MexicoCity = (typeof MEXICO_CITIES)[number];

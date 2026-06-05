@@ -1,21 +1,9 @@
-export const COUNTRIES = {
-  MX: {
-    code: "MX",
-    name: "Mexico",
-    flag: "🇲🇽",
-  },
-  CA: {
-    code: "CA",
-    name: "Canada",
-    flag: "🇨🇦",
-  },
-  USA: {
-    code: "USA",
-    name: "USA",
-    flag: "🇺🇸",
-  },
+export const ORIGIN_COUNTRIES = {
+  MX: { code: "MX", name: "Mexico", flag: "🇲🇽" },
+  CA: { code: "CA", name: "Canada", flag: "🇨🇦" },
 } as const;
 
-// Derive the type from the data
-export type CountryCode = keyof typeof COUNTRIES;
-export type Country = (typeof COUNTRIES)[CountryCode];
+// "MX" | "CA"
+export type OriginCountryCode = keyof typeof ORIGIN_COUNTRIES;
+// just either mx or ca with its fields
+export type OriginCountry = (typeof ORIGIN_COUNTRIES)[OriginCountryCode];
