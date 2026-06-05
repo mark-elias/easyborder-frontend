@@ -1,13 +1,16 @@
 import { create } from "zustand";
+// constants and types
+import { OriginCountryCode } from "@/src/lib/constants";
+import { OriginCity } from "@/src/types";
 
 // interface for my store
 interface CountryAndCityStore {
-  selectedCountry: "MX" | "CA" | null;
-  selectedCity: string | null;
+  selectedCountry: OriginCountryCode | null;
+  selectedCity: OriginCity | null;
 
   // actions
-  setCountry: (country: "MX" | "CA") => void;
-  setCity: (city: string) => void;
+  setCountry: (country: OriginCountryCode) => void;
+  setCity: (city: OriginCity) => void;
   clearCity: () => void;
   reset: () => void;
 }
