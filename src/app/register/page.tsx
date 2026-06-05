@@ -1,13 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-// zod & react hook form
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-// hooks
-import useRegister, { RegisterError } from "@/src/hooks/useRegister";
-import { AxiosError } from "axios";
 // ui
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -26,44 +19,60 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Spinner } from "@/components/ui/spinner";
+// zod validation
+import * as z from "zod";
+// RHF
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+// hooks
+import useRegister from "@/src/hooks/useRegister";
+import { AxiosError } from "axios";
+import { AuthErrorResponse } from "@/src/types";
 
-// zod shcema
+// zod shcema =====
 const registerSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
+//=======
 
 function RegisterPage() {
   const router = useRouter();
   // register hook
   const registerMutation = useRegister();
 
-  // reacthookfrom & zod setup
+  // React Hook Form
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setError,
+    register, // connects an input to form
+    handleSubmit, // rhf wrapper for onSubmit, runs validation first
+    formState: { errors }, // validation error messages
   } = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema), // use Zod as my validator
   });
 
   // form submit handler
   const onSubmit = (values: RegisterFormValues) => {
     registerMutation.mutate(values, {
-      onSuccess: (data) => {
-        console.log("Registration successful!", data.token);
-
-        // can store tocken and redirect later
+      onSuccess: () => {
+        console.log("Registration successful!");
         toast.success("Account Created Successfully", {
           position: "top-center",
         });
-        setTimeout(() => router.push("/login"), 2000);
+        setTimeout(() => router.push("/login"), 1000);
       },
-      onError: (error: AxiosError<RegisterError>) => {
-        console.error("Registration failed:", error);
+      onError: (error: Error) => {
+        const axiosError = error as AxiosError<AuthErrorResponse>;
+        console.error(
+          "Registration failed:",
+          axiosError.response?.data?.message,
+        );
+        toast.error(
+          axiosError.response?.data?.message ||
+            "Registration failed, please try again",
+          { position: "top-center" },
+        );
       },
     });
   };
