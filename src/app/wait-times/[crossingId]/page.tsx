@@ -4,8 +4,13 @@ import { useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 // hooks
 import useWaitTimes from "@/src/hooks/useWaitTimes";
+import useCurrentUser from "@/src/hooks/useCurrentUser";
+import useFavorites from "@/src/hooks/useFavorites";
+import useToggleFavorite from "@/src/hooks/useToggleFavorite";
 // zustand
 import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
+// types
+import { TravelerType, FavoriteLaneType } from "@/src/types";
 // components
 import { LoadingSpinnerWithText } from "@/src/components/molecules";
 // shadcn
@@ -33,6 +38,9 @@ function WaitTimesPage() {
   };
 
   const { data: waitTimes, isLoading, error } = useWaitTimes(crossingId);
+  const { data: user } = useCurrentUser();
+  const { data: favorites } = useFavorites();
+  const { addMutation, removeMutation } = useToggleFavorite();
 
   // helper function to determine wait time color
   const getWaitTimeColor = (minutes: number) => {
@@ -54,6 +62,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Passenger",
           lane: "General",
+          travelerType: "passenger" as TravelerType,
+          laneType: "standard" as FavoriteLaneType,
           data: waitTimes.passenger.standard,
           color: "text-custom-blue",
           icon: "CarFront",
@@ -63,6 +73,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Passenger",
           lane: "Ready Lane",
+          travelerType: "passenger" as TravelerType,
+          laneType: "ready" as FavoriteLaneType,
           data: waitTimes.passenger.ready,
           color: "text-custom-blue",
           icon: "CarFront",
@@ -72,6 +84,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Passenger",
           lane: "SENTRI",
+          travelerType: "passenger" as TravelerType,
+          laneType: "sentri" as FavoriteLaneType,
           data: waitTimes.passenger.sentri,
           color: "text-custom-blue",
           icon: "CarFront",
@@ -85,6 +99,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Pedestrian",
           lane: "General",
+          travelerType: "pedestrian" as TravelerType,
+          laneType: "standard" as FavoriteLaneType,
           data: waitTimes.pedestrian.standard,
           color: "text-custom-teal",
           icon: "Footprints",
@@ -94,6 +110,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Pedestrian",
           lane: "Ready Lane",
+          travelerType: "pedestrian" as TravelerType,
+          laneType: "ready" as FavoriteLaneType,
           data: waitTimes.pedestrian.ready,
           color: "text-custom-teal",
           icon: "Footprints",
@@ -107,6 +125,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Commercial",
           lane: "General",
+          travelerType: "commercial" as TravelerType,
+          laneType: "standard" as FavoriteLaneType,
           data: waitTimes.commercial.standard,
           color: "text-custom-yellow",
           icon: "Truck",
@@ -116,6 +136,8 @@ function WaitTimesPage() {
         availableLanes.push({
           type: "Commercial",
           lane: "Fast Lane",
+          travelerType: "commercial" as TravelerType,
+          laneType: "fast" as FavoriteLaneType,
           data: waitTimes.commercial.fast,
           color: "text-custom-yellow",
           icon: "Truck",
@@ -127,6 +149,27 @@ function WaitTimesPage() {
   };
 
   const availableLanes = getAvailableLaneTypes();
+
+  const isFavorited = (travelerType: TravelerType, laneType: FavoriteLaneType) =>
+    favorites?.find(
+      (fav) =>
+        fav.crossingId === crossingId &&
+        fav.travelerType === travelerType &&
+        fav.laneType === laneType
+    );
+
+  const handleHeartClick = (travelerType: TravelerType, laneType: FavoriteLaneType) => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+    const existing = isFavorited(travelerType, laneType);
+    if (existing) {
+      removeMutation.mutate(existing._id);
+    } else {
+      addMutation.mutate({ crossingId, travelerType, laneType });
+    }
+  };
 
   if (isLoading) return <LoadingSpinnerWithText />;
   if (error) return <div>Error: {error.message}</div>;
@@ -164,7 +207,14 @@ function WaitTimesPage() {
                     {lane.type}
                   </CardDescription>
                 </div>
-                <Heart className="hover:text-custom-red hover:cursor-pointer" />
+                <Heart
+                  onClick={() => handleHeartClick(lane.travelerType, lane.laneType)}
+                  className={`hover:cursor-pointer transition-colors ${
+                    isFavorited(lane.travelerType, lane.laneType)
+                      ? "text-red-500 fill-red-500"
+                      : "hover:text-red-500"
+                  }`}
+                />
               </div>
               <CardTitle className="font-semibold text-2xl">
                 {lane.lane}
