@@ -1,5 +1,3 @@
-import { Crossing } from "./crossing";
-
 export interface LaneDetail {
   updateTime: string;
   operationalStatus: string;
@@ -7,9 +5,16 @@ export interface LaneDetail {
   lanesOpen: number;
 }
 
+// Populated crossing shape from wait-times endpoint
+export interface PopulatedCrossing {
+  _id: string;
+  portName: string;
+  crossingName: string;
+}
+
 export interface WaitTime {
   _id: string;
-  crossing: string | Crossing;
+  crossing: PopulatedCrossing; // no longer string | Crossing
   commercial?: {
     standard: LaneDetail;
     fast: LaneDetail;
