@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 // Tanstack
-import { QueryProvider } from "../lib/lib/providers/QueryProvider";
+import { QueryProvider } from "../lib/providers/QueryProvider";
 // componenets
 import { NavBar } from "../components/organisms";
 // toast
@@ -31,7 +31,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <NavBar />
             <main className="flex-1 p-5">{children}</main>
-            <Toaster/>
+            <Toaster />
           </div>
         </QueryProvider>
       </body>
