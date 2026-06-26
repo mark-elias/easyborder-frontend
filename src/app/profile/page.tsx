@@ -35,6 +35,13 @@ function ProfilePage() {
             </p>
           </section>
           <Button
+            variant="action"
+            onClick={() => router.push("/favorites")}
+            className="w-fit"
+          >
+            Favorites
+          </Button>
+          <Button
             onClick={handleLogout}
             disabled={logoutMutation.isPending}
             variant="outline"
