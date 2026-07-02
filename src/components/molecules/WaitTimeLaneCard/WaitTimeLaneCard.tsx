@@ -64,9 +64,8 @@ export function WaitTimeLaneCard({
           {data.delayMinutes} mins
         </p>
       </CardContent>
-      <CardFooter className="border-0 flex flex-col items-start">
+      <CardFooter className="border-0 flex flex-col items-start gap-1">
         <p>Lanes Open: {data.lanesOpen}</p>
-        <p>Operational Status: {data.operationalStatus}</p>
         <OperationalStatusBadge status={data.operationalStatus} />
       </CardFooter>
     </Card>

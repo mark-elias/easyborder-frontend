@@ -10,7 +10,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TravelerTypeIcon } from "@/src/components/atoms";
+import {
+  OperationalStatusBadge,
+  TravelerTypeIcon,
+} from "@/src/components/atoms";
 import {
   getLaneData,
   getWaitTimeColor,
@@ -56,7 +59,7 @@ function FavoriteLaneCard({ favorite, waitTimes, onRemove }: Props) {
       </CardContent>
       <CardFooter className="border-0 flex flex-col items-start">
         <p>Lanes Open: {laneData.lanesOpen}</p>
-        <p>Operational Status: {laneData.operationalStatus}</p>
+        <OperationalStatusBadge status={laneData.operationalStatus} />
       </CardFooter>
     </Card>
   );
