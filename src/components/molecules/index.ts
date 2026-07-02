@@ -4,6 +4,7 @@ import FavoriteLaneCard from "./FavoriteLaneCard/FavoriteLaneCard";
 import { FavoritesEmptyState } from "./FavoritesEmptyState/FavoritesEmptyState";
 import { WaitTimeLaneCard } from "./WaitTimeLaneCard/WaitTimeLaneCard";
 export { AvailableLaneIcons } from "./AvailableLaneIcons/AvailableLaneIcons";
+export { CrossingCard } from "./CrossingCard/CrossingCard";
 
 export {
   CountryButton,
