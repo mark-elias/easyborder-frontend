@@ -44,7 +44,7 @@ export function WaitTimeLaneCard({
         <div className="flex justify-between">
           <div className="flex gap-2 items-center text-custom-grey">
             <TravelerTypeIcon travelerType={travelerType} className="size-6" />
-            <CardDescription className="text-lg font-semibold">
+            <CardDescription className="font-semibold">
               {TRAVELER_TYPE_LABELS[travelerType]}
             </CardDescription>
           </div>
@@ -55,9 +55,7 @@ export function WaitTimeLaneCard({
             }`}
           />
         </div>
-        <CardTitle className="font-semibold text-2xl">
-          {LANE_LABELS[laneType]}
-        </CardTitle>
+        <CardTitle className="font-semibold">{LANE_LABELS[laneType]}</CardTitle>
       </CardHeader>
       <CardContent className="text-3xl font-bold text-center my-3">
         <p className={getWaitTimeColor(data.delayMinutes || 0)}>

@@ -4,11 +4,10 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PortStatusBadge, } from "@/src/components/atoms";
+import { PortStatusBadge } from "@/src/components/atoms";
 import { AvailableLaneIcons } from "@/src/components/molecules";
 import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants";
 
@@ -26,10 +25,10 @@ export function CrossingCard({ crossing }: Props) {
       >
         <CardHeader>
           <div className="flex justify-between items-baseline">
-            <CardTitle className="text-xl">{crossing.portName}</CardTitle>
+            <CardTitle>{crossing.portName}</CardTitle>
             <CardDescription>Port #{crossing.portNumber}</CardDescription>
           </div>
-          <CardDescription className="text-lg font-semibold">
+          <CardDescription className="font-semibold">
             {crossing.crossingName}
           </CardDescription>
         </CardHeader>
@@ -48,11 +47,11 @@ export function CrossingCard({ crossing }: Props) {
             hasPedestrianLanes={crossing.hasPedestrianLanes}
           />
         </CardContent>
-        {crossing.constructionNotice && (
+        {/* {crossing.constructionNotice && (
           <CardFooter className="text-xs text-custom-grey rounded border-0">
             {crossing.constructionNotice}
           </CardFooter>
-        )}
+        )} */}
       </Card>
     </Link>
   );

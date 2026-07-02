@@ -13,7 +13,9 @@ export function PortStatusBadge({ status }: Props) {
         : "bg-custom-grey";
 
   return (
-    <span className={`px-1 py-0 rounded uppercase text-xs ${colorClass}`}>
+    <span
+      className={`px-1 py-0 rounded-xs uppercase text-xs text-black ${colorClass}`}
+    >
       {status ?? "N/A"}
     </span>
   );

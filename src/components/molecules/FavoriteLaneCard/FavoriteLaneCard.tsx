@@ -39,7 +39,7 @@ function FavoriteLaneCard({ favorite, waitTimes, onRemove }: Props) {
         <div className="flex justify-between items-start">
           <div className="flex gap-2 items-center text-custom-grey">
             <TravelerTypeIcon travelerType={travelerType} />
-            <CardDescription className="text-lg font-semibold">
+            <CardDescription className="font-semibold">
               {TRAVELER_TYPE_LABELS[travelerType]}
             </CardDescription>
           </div>
@@ -48,9 +48,7 @@ function FavoriteLaneCard({ favorite, waitTimes, onRemove }: Props) {
             className="hover:cursor-pointer text-red-500 fill-red-500 hover:opacity-70 transition-opacity"
           />
         </div>
-        <CardTitle className="font-semibold text-2xl">
-          {LANE_LABELS[laneType]}
-        </CardTitle>
+        <CardTitle className="font-semibold">{LANE_LABELS[laneType]}</CardTitle>
       </CardHeader>
       <CardContent className="text-3xl font-bold text-center my-3">
         <p className={getWaitTimeColor(laneData.delayMinutes || 0)}>

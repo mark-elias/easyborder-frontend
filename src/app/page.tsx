@@ -12,7 +12,7 @@ function HomePage() {
 
   return (
     <div className="flex flex-col items-center gap-15 mt-10">
-      <section className="py-5 px-10 shadow-xl border border-zinc-900 rounded text-xl font-bold flex flex-col gap-10 text-custom-grey">
+      <section className="py-5 px-10 shadow-xl border border-zinc-900 rounded text-md lg:text-xl font-bold flex flex-col gap-10 text-custom-grey">
         <p>{HOME_PAGE_TEXT.description1}</p>
         <p>{HOME_PAGE_TEXT.description2}</p>
       </section>

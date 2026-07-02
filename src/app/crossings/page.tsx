@@ -10,7 +10,6 @@ import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants";
 import { useRequireCountryAndCity } from "@/src/hooks/useRequireCountryAndCity";
 import useCrossings from "@/src/hooks/useCrossings";
 import { Button } from "@/components/ui/button";
-import { BadgeCheck } from "lucide-react";
 
 function CrossingsPage() {
   const router = useRouter();
@@ -36,23 +35,15 @@ function CrossingsPage() {
       <Button onClick={handleChangeCity}>
         {CROSSINGS_PAGE_TEXT.changeCityButtonText}
       </Button>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-10">
         <section className="text-center mt-5">
-          <h1>
+          <h3>
             {CROSSINGS_PAGE_TEXT.title}
             {selectedCity}
-          </h1>
-          <h3 className="text-custom-grey">
-            {CROSSINGS_PAGE_TEXT.description}
           </h3>
+          <p className="text-custom-grey">{CROSSINGS_PAGE_TEXT.description}</p>
         </section>
-        <section>
-          <div className="flex gap-1 mt-10 mb-5 text-sm items-center text-custom-green">
-            <BadgeCheck className="size-3.5" />
-            <p>Official CBP data</p>
-          </div>
-        </section>
-        <section className="flex flex-wrap gap-10">
+        <section className="flex flex-wrap gap-5">
           {crossings?.map((crossing) => (
             <CrossingCard key={crossing._id} crossing={crossing} />
           ))}

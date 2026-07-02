@@ -69,13 +69,13 @@ function WaitTimesPage() {
       <Button onClick={() => router.back()}>Go Back</Button>
       <section className="flex flex-col items-center justify-center">
         <div className="text-center mt-5 mb-14">
-          <h1>Wait Times</h1>
-          <h3 className="text-custom-grey">
+          <h3>Wait Times</h3>
+          <p className="text-custom-grey">
             current wait times for {selectedCity}
-          </h3>
+          </p>
         </div>
       </section>
-      <section className="flex flex-wrap gap-10">
+      <section className="flex flex-wrap gap-5">
         {availableLanes.map((lane) => (
           <WaitTimeLaneCard
             key={`${lane.travelerType}-${lane.laneType}`}

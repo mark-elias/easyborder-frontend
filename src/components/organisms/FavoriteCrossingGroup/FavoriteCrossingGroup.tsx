@@ -31,7 +31,7 @@ export function FavoriteCrossingGroup({
   return (
     <section className="flex flex-col gap-5">
       <div>
-        <h2 className="text-2xl font-bold">{portName}</h2>
+        <p className="font-bold">{portName}</p>
         <p className="text-custom-grey">{crossingName}</p>
       </div>
       <div className="flex flex-wrap gap-5">

@@ -37,7 +37,7 @@ function FavoritesPage() {
 
   return (
     <div className="flex flex-col gap-12 mt-10">
-      <h1 className="text-3xl font-bold">My Favorites</h1>
+      <h3>Favorites</h3>
       {Object.entries(grouped).map(([crossingId, lanes]) => (
         <FavoriteCrossingGroup
           key={crossingId}
