@@ -2,11 +2,17 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+// hooks
 import useCurrentUser from "@/src/hooks/useCurrentUser";
 import useFavorites from "@/src/hooks/useFavorites";
 import useToggleFavorite from "@/src/hooks/useToggleFavorite";
-import { FavoritesEmptyState, LoadingSpinnerWithText } from "@/src/components/molecules";
+// components
+import {
+  FavoritesEmptyState,
+  LoadingSpinnerWithText,
+} from "@/src/components/molecules";
 import { FavoriteCrossingGroup } from "@/src/components/organisms";
+// helper functions
 import { groupFavoritesByCrossing } from "@/src/lib/utils/waitTimeUtils";
 
 function FavoritesPage() {
@@ -26,7 +32,8 @@ function FavoritesPage() {
   if (!favorites || favorites.length === 0) return <FavoritesEmptyState />;
 
   const grouped = groupFavoritesByCrossing(favorites);
-  const handleRemove = (favoriteId: string) => removeMutation.mutate(favoriteId);
+  const handleRemove = (favoriteId: string) =>
+    removeMutation.mutate(favoriteId);
 
   return (
     <div className="flex flex-col gap-12 mt-10">

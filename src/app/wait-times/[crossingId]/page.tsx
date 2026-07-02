@@ -150,15 +150,21 @@ function WaitTimesPage() {
 
   const availableLanes = getAvailableLaneTypes();
 
-  const isFavorited = (travelerType: TravelerType, laneType: FavoriteLaneType) =>
+  const isFavorited = (
+    travelerType: TravelerType,
+    laneType: FavoriteLaneType,
+  ) =>
     favorites?.find(
       (fav) =>
         fav.crossingId === crossingId &&
         fav.travelerType === travelerType &&
-        fav.laneType === laneType
+        fav.laneType === laneType,
     );
 
-  const handleHeartClick = (travelerType: TravelerType, laneType: FavoriteLaneType) => {
+  const handleHeartClick = (
+    travelerType: TravelerType,
+    laneType: FavoriteLaneType,
+  ) => {
     if (!user) {
       router.push("/login");
       return;
@@ -208,7 +214,9 @@ function WaitTimesPage() {
                   </CardDescription>
                 </div>
                 <Heart
-                  onClick={() => handleHeartClick(lane.travelerType, lane.laneType)}
+                  onClick={() =>
+                    handleHeartClick(lane.travelerType, lane.laneType)
+                  }
                   className={`hover:cursor-pointer transition-colors ${
                     isFavorited(lane.travelerType, lane.laneType)
                       ? "text-red-500 fill-red-500"

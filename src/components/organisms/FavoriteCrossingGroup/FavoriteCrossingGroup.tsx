@@ -1,7 +1,10 @@
 "use client";
 
+// types
 import type { Favorite } from "@/src/types";
+// hooks
 import useWaitTimes from "@/src/hooks/useWaitTimes";
+// components
 import {
   FavoriteLaneCard,
   LoadingSpinnerWithText,
