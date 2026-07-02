@@ -22,13 +22,15 @@ function NavBar() {
         EasyBorder
       </Link>
       <div className="flex gap-5">
-        <button
-          onClick={() => router.push("/favorites")}
-          className="hover:cursor-pointer hover:text-custom-blue font-semibold"
-          aria-label="favorites"
-        >
-          Favorites
-        </button>
+        {isLoading ? null : user ? (
+          <button
+            onClick={() => router.push("/favorites")}
+            className="hover:cursor-pointer hover:text-custom-blue font-semibold"
+            aria-label="favorites"
+          >
+            Favorites
+          </button>
+        ) : null}
         {isLoading ? null : user ? (
           <button
             onClick={() => router.push("/profile")}
