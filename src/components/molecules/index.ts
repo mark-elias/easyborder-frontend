@@ -3,6 +3,7 @@ import LoadingSpinnerWithText from "./LoadingSpinnerWithText/LoadingSpinnerWithT
 import FavoriteLaneCard from "./FavoriteLaneCard/FavoriteLaneCard";
 import { FavoritesEmptyState } from "./FavoritesEmptyState/FavoritesEmptyState";
 import { WaitTimeLaneCard } from "./WaitTimeLaneCard/WaitTimeLaneCard";
+export { AvailableLaneIcons } from "./AvailableLaneIcons/AvailableLaneIcons";
 
 export {
   CountryButton,
