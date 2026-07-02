@@ -1,5 +1,12 @@
-import type { Favorite, FavoriteLaneType, LaneDetail, TravelerType, WaitTime } from "@/src/types";
+import type {
+  Favorite,
+  FavoriteLaneType,
+  LaneDetail,
+  TravelerType,
+  WaitTime,
+} from "@/src/types";
 
+// returns color based on waittime
 export function getWaitTimeColor(minutes: number): string {
   if (minutes === 0) return "text-custom-grey";
   if (minutes <= 30) return "text-custom-green";
@@ -7,6 +14,7 @@ export function getWaitTimeColor(minutes: number): string {
   return "text-custom-red";
 }
 
+// maps lane type keys to display labels
 export const LANE_LABELS: Record<FavoriteLaneType, string> = {
   standard: "General",
   ready: "Ready Lane",
@@ -14,12 +22,14 @@ export const LANE_LABELS: Record<FavoriteLaneType, string> = {
   fast: "Fast Lane",
 };
 
+// maps traveler type keys to display labels
 export const TRAVELER_TYPE_LABELS: Record<TravelerType, string> = {
   passenger: "Passenger",
   pedestrian: "Pedestrian",
   commercial: "Commercial",
 };
 
+// looks up a specific lanes data from a wait time object by traveler and lane type
 export function getLaneData(
   waitTimes: WaitTime,
   travelerType: TravelerType,
@@ -47,6 +57,7 @@ export function getLaneData(
   return undefined;
 }
 
+// groups an array of favorites into an object keyed by crossingId
 export function groupFavoritesByCrossing(
   favorites: Favorite[],
 ): Record<string, Favorite[]> {
@@ -55,4 +66,70 @@ export function groupFavoritesByCrossing(
     acc[fav.crossingId].push(fav);
     return acc;
   }, {});
+}
+
+// shape of a single flattened lane entry used by getAvailableLanes
+export interface LaneEntry {
+  travelerType: TravelerType;
+  laneType: FavoriteLaneType;
+  data: LaneDetail;
+}
+
+// flattens a wait time object into an array of lane entries, skipping lanes with no data
+export function getAvailableLanes(waitTimes: WaitTime): LaneEntry[] {
+  const lanes: LaneEntry[] = [];
+
+  if (waitTimes.passenger) {
+    const p = waitTimes.passenger;
+    if (p.standard)
+      lanes.push({
+        travelerType: "passenger",
+        laneType: "standard",
+        data: p.standard,
+      });
+    if (p.ready)
+      lanes.push({
+        travelerType: "passenger",
+        laneType: "ready",
+        data: p.ready,
+      });
+    if (p.sentri)
+      lanes.push({
+        travelerType: "passenger",
+        laneType: "sentri",
+        data: p.sentri,
+      });
+  }
+  if (waitTimes.pedestrian) {
+    const w = waitTimes.pedestrian;
+    if (w.standard)
+      lanes.push({
+        travelerType: "pedestrian",
+        laneType: "standard",
+        data: w.standard,
+      });
+    if (w.ready)
+      lanes.push({
+        travelerType: "pedestrian",
+        laneType: "ready",
+        data: w.ready,
+      });
+  }
+  if (waitTimes.commercial) {
+    const c = waitTimes.commercial;
+    if (c.standard)
+      lanes.push({
+        travelerType: "commercial",
+        laneType: "standard",
+        data: c.standard,
+      });
+    if (c.fast)
+      lanes.push({
+        travelerType: "commercial",
+        laneType: "fast",
+        data: c.fast,
+      });
+  }
+
+  return lanes;
 }
