@@ -10,7 +10,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TravelerTypeIcon } from "@/src/components/atoms";
+import {
+  OperationalStatusBadge,
+  TravelerTypeIcon,
+} from "@/src/components/atoms";
 import {
   getWaitTimeColor,
   LANE_LABELS,
@@ -64,6 +67,7 @@ export function WaitTimeLaneCard({
       <CardFooter className="border-0 flex flex-col items-start">
         <p>Lanes Open: {data.lanesOpen}</p>
         <p>Operational Status: {data.operationalStatus}</p>
+        <OperationalStatusBadge status={data.operationalStatus} />
       </CardFooter>
     </Card>
   );
