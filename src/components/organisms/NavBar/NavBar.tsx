@@ -24,7 +24,7 @@ function NavBar() {
       <div className="flex gap-5">
         <button
           onClick={() => router.push("/favorites")}
-          className="hover:cursor-pointer hover:text-custom-blue"
+          className="hover:cursor-pointer hover:text-custom-blue font-semibold"
           aria-label="favorites"
         >
           Favorites
