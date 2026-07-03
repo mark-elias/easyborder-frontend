@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import useCurrentUser from "@/src/hooks/useCurrentUser";
 // ui
 import { User } from "lucide-react";
+// components
+import { SelectedOriginIndicator } from "../../atoms";
 
 function NavBar() {
   const router = useRouter();
@@ -21,6 +23,8 @@ function NavBar() {
       >
         EasyBorder
       </Link>
+      <SelectedOriginIndicator />
+
       <div className="flex gap-5">
         {isLoading ? null : user ? (
           <button
