@@ -18,7 +18,7 @@ function CrossingsPage() {
 
   const handleChangeCity = () => {
     clearCity();
-    router.push("/cities");
+    router.push("/origin");
   };
 
   const {

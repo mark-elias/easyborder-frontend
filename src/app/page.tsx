@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button";
 import { BadgeCheck, Zap, Users } from "lucide-react";
 // constants
 import { HOME_PAGE_TEXT } from "../lib/constants";
+// zustand
+import { useCountryAndCityStore } from "../lib/store/useCountryAndCityStore";
 
 function HomePage() {
   const router = useRouter();
+  const selectedCity = useCountryAndCityStore((state) => state.selectedCity);
 
   return (
     <div className="flex flex-col items-center gap-15 mt-10">
@@ -31,7 +34,10 @@ function HomePage() {
         </div>
       </section>
       <section className="flex gap-10">
-        <Button variant="action" onClick={() => router.push("/country")}>
+        <Button
+          variant="action"
+          onClick={() => router.push(selectedCity ? "/crossings" : "/origin")}
+        >
           {HOME_PAGE_TEXT.button1}
         </Button>
         <Button onClick={() => router.push("/register")}>

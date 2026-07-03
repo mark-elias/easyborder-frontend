@@ -12,7 +12,7 @@ export function useRequireCountryAndCity() {
 
   useEffect(() => {
     if (!selectedCountry && !selectedCity) {
-      router.push("/country");
+      router.push("/origin");
     }
   }, [selectedCountry, selectedCity, router]);
 

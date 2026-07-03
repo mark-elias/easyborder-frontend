@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 // constants and types
 import { OriginCountryCode } from "@/src/lib/constants";
 import { OriginCity } from "@/src/types";
@@ -17,33 +18,39 @@ interface CountryAndCityStore {
 
 // create my store
 // with my type/interface
-export const useCountryAndCityStore = create<CountryAndCityStore>(
-  // function that defines the store
-  (set) => ({
-    // initial state
-    selectedCountry: null,
-    selectedCity: null,
+export const useCountryAndCityStore = create<CountryAndCityStore>()(
+  persist(
+    // function that defines the store
+    (set) => ({
+      // initial state
+      selectedCountry: null,
+      selectedCity: null,
 
-    // actions
-    // to update the country and reset city
-    setCountry: (country) =>
-      set({
-        selectedCountry: country,
-        // reset city if new country is selected
-        selectedCity: null,
-      }),
+      // actions
+      // to update the country and reset city
+      setCountry: (country) =>
+        set({
+          selectedCountry: country,
+          // reset city if new country is selected
+          selectedCity: null,
+        }),
 
-    // to update just the city
-    setCity: (city) => set({ selectedCity: city }),
+      // to update just the city
+      setCity: (city) => set({ selectedCity: city }),
 
-    // to clear just the city
-    clearCity: () => set({ selectedCity: null }),
+      // to clear just the city
+      clearCity: () => set({ selectedCity: null }),
 
-    // for clearing country and city
-    reset: () =>
-      set({
-        selectedCountry: null,
-        selectedCity: null,
-      }),
-  }),
+      // for clearing country and city
+      reset: () =>
+        set({
+          selectedCountry: null,
+          selectedCity: null,
+        }),
+    }),
+    // local storage key
+    {
+      name: "easyborder-origin",
+    },
+  ),
 );
