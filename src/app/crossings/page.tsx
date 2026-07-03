@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 import {
   LoadingSpinnerWithText,
   CrossingCard,
@@ -9,17 +7,9 @@ import {
 import { CROSSINGS_PAGE_TEXT } from "@/src/lib/constants";
 import { useRequireCountryAndCity } from "@/src/hooks/useRequireCountryAndCity";
 import useCrossings from "@/src/hooks/useCrossings";
-import { Button } from "@/components/ui/button";
 
 function CrossingsPage() {
-  const router = useRouter();
-  const clearCity = useCountryAndCityStore((state) => state.clearCity);
   const { selectedCountry, selectedCity } = useRequireCountryAndCity();
-
-  const handleChangeCity = () => {
-    clearCity();
-    router.push("/origin");
-  };
 
   const {
     data: crossings,
@@ -32,9 +22,6 @@ function CrossingsPage() {
 
   return (
     <>
-      <Button onClick={handleChangeCity}>
-        {CROSSINGS_PAGE_TEXT.changeCityButtonText}
-      </Button>
       <div className="flex flex-col items-center justify-center gap-10">
         <section className="text-center mt-5">
           <h3>

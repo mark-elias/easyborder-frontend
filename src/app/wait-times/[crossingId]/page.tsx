@@ -18,7 +18,6 @@ import {
   LoadingSpinnerWithText,
   WaitTimeLaneCard,
 } from "@/src/components/molecules";
-import { Button } from "@/components/ui/button";
 
 function WaitTimesPage() {
   const router = useRouter();
@@ -66,7 +65,6 @@ function WaitTimesPage() {
 
   return (
     <>
-      <Button onClick={() => router.back()}>Go Back</Button>
       <section className="flex flex-col items-center justify-center">
         <div className="text-center mt-5 mb-14">
           <h3>Wait Times</h3>
