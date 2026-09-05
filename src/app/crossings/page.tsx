@@ -32,7 +32,7 @@ function CrossingsPage() {
         </section>
         <section className="flex flex-wrap gap-5">
           {crossings?.map((crossing) => (
-            <CrossingCard key={crossing._id} crossing={crossing} />
+            <CrossingCard key={crossing.id} crossing={crossing} />
           ))}
         </section>
       </div>

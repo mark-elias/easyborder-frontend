@@ -16,7 +16,7 @@ function useToggleFavorite() {
       // Optimistically add a temporary favorite (no _id yet)
       queryClient.setQueryData<Favorite[]>(["favorites"], (old = []) => [
         ...old,
-        { _id: "temp", ...payload },
+        { id: "temp", ...payload },
       ]);
 
       return { previous };
@@ -41,7 +41,7 @@ function useToggleFavorite() {
 
       // Optimistically remove from cache immediately
       queryClient.setQueryData<Favorite[]>(["favorites"], (old = []) =>
-        old.filter((fav) => fav._id !== favoriteId)
+        old.filter((fav) => fav.id !== favoriteId),
       );
 
       return { previous };

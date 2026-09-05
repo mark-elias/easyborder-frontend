@@ -37,7 +37,7 @@ export function FavoriteCrossingGroup({
       <div className="flex flex-wrap gap-5">
         {favoriteLanes.map((fav) => (
           <FavoriteLaneCard
-            key={fav._id}
+            key={fav.id}
             favorite={fav}
             waitTimes={waitTimes}
             onRemove={onRemove}

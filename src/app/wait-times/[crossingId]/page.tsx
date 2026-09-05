@@ -51,7 +51,7 @@ function WaitTimesPage() {
     }
     const existing = isFavorited(travelerType, laneType);
     if (existing) {
-      removeMutation.mutate(existing._id);
+      removeMutation.mutate(existing.id);
     } else {
       addMutation.mutate({ crossingId, travelerType, laneType });
     }

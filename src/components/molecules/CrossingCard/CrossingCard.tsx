@@ -17,7 +17,7 @@ interface Props {
 
 export function CrossingCard({ crossing }: Props) {
   return (
-    <Link href={`/wait-times/${crossing._id}`} className="block">
+    <Link href={`/wait-times/${crossing.id}`} className="block">
       <Card
         className="w-[350px] h-full shadow-lg
         hover:cursor-pointer hover:scale-[1.03]

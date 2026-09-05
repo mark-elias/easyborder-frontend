@@ -19,7 +19,7 @@ export interface AuthErrorResponse {
 
 // current user info (me endpoint)
 export interface CurrentUser {
-  _id: string;
+  id: string;
   email: string;
   username?: string;
   createdAt: string;

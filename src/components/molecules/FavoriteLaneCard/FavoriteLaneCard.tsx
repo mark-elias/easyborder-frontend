@@ -28,7 +28,7 @@ interface Props {
 }
 
 function FavoriteLaneCard({ favorite, waitTimes, onRemove }: Props) {
-  const { travelerType, laneType, _id } = favorite;
+  const { travelerType, laneType, id } = favorite;
 
   const laneData = getLaneData(waitTimes, travelerType, laneType);
   if (!laneData) return null;
@@ -44,7 +44,7 @@ function FavoriteLaneCard({ favorite, waitTimes, onRemove }: Props) {
             </CardDescription>
           </div>
           <Heart
-            onClick={() => onRemove(_id)}
+            onClick={() => onRemove(id)}
             className="hover:cursor-pointer text-red-500 fill-red-500 hover:opacity-70 transition-opacity"
           />
         </div>
