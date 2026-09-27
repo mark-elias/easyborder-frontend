@@ -1,6 +1,6 @@
 export const HOME_PAGE_TEXT = {
   description1:
-    "EasyBorder provides reliable border wait times using official CBP data for all port of entries and crossing methods",
+    "EasyBorder provides reliable border wait times using official CBP data for all port of entries and crossing methods.",
   description2:
     "Compare crossings, save your favorite lanes, and share your border crossing experiences with other travelers",
   feature1: "Official CBP data",
