@@ -34,7 +34,7 @@ function FavoriteLaneCard({ favorite, waitTimes, onRemove }: Props) {
   if (!laneData) return null;
 
   return (
-    <Card className="w-[300px] shadow-lg">
+    <Card className="w-[250px] shadow-lg">
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex gap-2 items-center text-custom-grey">

@@ -37,7 +37,7 @@ export function WaitTimeLaneCard({
 }: Props) {
   return (
     <Card
-      className="w-[300px] shadow-lg hover:cursor-pointer hover:scale-[1.03]
+      className="w-[250px] shadow-lg hover:cursor-pointer hover:scale-[1.03]
       transition-transform duration-200 ease-in-out"
     >
       <CardHeader>
