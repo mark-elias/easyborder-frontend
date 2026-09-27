@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 // hooks
 import useCurrentUser from "@/src/hooks/useCurrentUser";
 // ui
-import { User } from "lucide-react";
+import { User, MessagesCircle, Heart } from "lucide-react";
 // components
 import { SelectedOriginIndicator } from "../../atoms";
 
@@ -25,15 +25,24 @@ function NavBar() {
       </Link>
       <SelectedOriginIndicator />
 
-      <div className="flex gap-5">
+      <div className="flex gap-5 items-center">
+        <Link
+          href="/community-feed"
+          aria-label="Community Feed"
+          className="hover:cursor-pointer hover:text-custom-blue font-semibold"
+        >
+          <MessagesCircle className="md:hidden" />
+          <span className="hidden md:inline">Community Feed</span>
+        </Link>
         {isLoading ? null : user ? (
-          <button
-            onClick={() => router.push("/favorites")}
+          <Link
+            href="/favorites"
+            aria-label="Favorites"
             className="hover:cursor-pointer hover:text-custom-blue font-semibold"
-            aria-label="favorites"
           >
-            Favorites
-          </button>
+            <Heart className="md:hidden" />
+            <span className="hidden md:inline">Favorites</span>
+          </Link>
         ) : null}
         {isLoading ? null : user ? (
           <button
