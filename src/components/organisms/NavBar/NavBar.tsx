@@ -19,7 +19,7 @@ function NavBar() {
     <nav className="p-4 flex justify-between items-center shadow-lg">
       <Link
         href="/"
-        className="text-xl font-bold hover:cursor-pointer text-custom-blue"
+        className=" text-xs lg:text-xl font-bold hover:cursor-pointer text-custom-blue"
       >
         EasyBorder
       </Link>

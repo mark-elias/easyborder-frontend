@@ -10,7 +10,7 @@ export function SelectedOriginIndicator() {
   return (
     <Link
       href="/origin"
-      className="flex items-center gap-1 text-sm text-custom-grey hover:text-custom-blue transition-colors"
+      className="flex items-center gap-1 bg-custom-blue p-2 rounded-lg text-white text-xs lg:text-sm "
     >
       <MapPin className="size-4" />
       <span>{selectedCity}</span>
