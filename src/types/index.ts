@@ -3,3 +3,4 @@ export * from "./crossing";
 export * from "./wait-time";
 export * from "./origin-city";
 export * from "./favorite";
+export * from "./post";
