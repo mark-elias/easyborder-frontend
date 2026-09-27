@@ -5,6 +5,7 @@ import { FavoritesEmptyState } from "./FavoritesEmptyState/FavoritesEmptyState";
 import { WaitTimeLaneCard } from "./WaitTimeLaneCard/WaitTimeLaneCard";
 export { AvailableLaneIcons } from "./AvailableLaneIcons/AvailableLaneIcons";
 export { CrossingCard } from "./CrossingCard/CrossingCard";
+export { PostCard } from "./PostCard/PostCard";
 
 export {
   CountryButton,
