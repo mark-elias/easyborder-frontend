@@ -32,6 +32,9 @@ export default function OriginPage() {
   };
 
   const handleCitySelect = (city: OriginCity) => {
+    // MX is pre-selected visually but zustand doesn't know that until a country button is ACTUALLy clicked
+    // sync activeCountry to zustand
+    setCountry(activeCountry);
     setCity(city);
     router.push("/crossings");
   };
