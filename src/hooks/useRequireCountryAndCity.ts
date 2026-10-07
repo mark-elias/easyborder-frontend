@@ -11,7 +11,8 @@ export function useRequireCountryAndCity() {
   const selectedCity = useCountryAndCityStore((state) => state.selectedCity);
 
   useEffect(() => {
-    if (!selectedCountry && !selectedCity) {
+    // redirect to origin if either value is missing to avoid a blank crossings page
+    if (!selectedCountry || !selectedCity) {
       router.push("/origin");
     }
   }, [selectedCountry, selectedCity, router]);
