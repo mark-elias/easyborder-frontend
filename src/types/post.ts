@@ -9,3 +9,7 @@ export interface Post {
     username: string | null;
   };
 }
+
+export interface CreatePostPayload {
+  content: string;
+}
