@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import usePosts from "@/src/hooks/usePosts";
+import { CreatePostForm } from "@/src/components/organisms";
 import { LoadingSpinnerWithText, PostCard } from "@/src/components/molecules";
 import { FloatingActionButton } from "@/src/components/atoms";
 import {
@@ -56,7 +57,7 @@ function CommunityFeedPage() {
               Share an update about the border with the community.
             </DialogDescription>
           </DialogHeader>
-          {/* gonna put form here */}
+          <CreatePostForm onSuccess={() => setIsCreateOpen(false)} />
         </DialogContent>
       </Dialog>
     </div>
