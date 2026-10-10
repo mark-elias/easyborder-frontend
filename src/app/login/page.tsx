@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 // ui
 import { toast } from "sonner";
@@ -144,6 +145,15 @@ function LoginPage() {
               </Field>
             </FieldGroup>
           </form>
+          <p className="mt-6 text-center text-custom-grey">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/register"
+              className="font-semibold text-custom-blue hover:underline"
+            >
+              Sign up
+            </Link>
+          </p>
         </CardContent>
       </Card>
     </div>

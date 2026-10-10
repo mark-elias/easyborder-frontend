@@ -59,12 +59,7 @@ function NavBar() {
             <User className="" />
           </button>
         ) : (
-          <>
-            <Button onClick={() => router.push("/login")}>Login</Button>
-            <Button variant="outline" onClick={() => router.push("/register")}>
-              Sign Up
-            </Button>
-          </>
+          <Button onClick={() => router.push("/login")}>Login</Button>
         )}
         <ThemeToggle />
       </div>
