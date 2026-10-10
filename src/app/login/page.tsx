@@ -98,7 +98,7 @@ function LoginPage() {
                   {...register("email")}
                 />
                 {errors.email && (
-                  <FieldDescription className="text-red-500">
+                  <FieldDescription className="text-destructive">
                     {errors.email.message}
                   </FieldDescription>
                 )}
@@ -116,7 +116,7 @@ function LoginPage() {
                   {...register("password")}
                 />
                 {errors.password ? (
-                  <FieldDescription className="text-red-500">
+                  <FieldDescription className="text-destructive">
                     {errors.password.message}
                   </FieldDescription>
                 ) : (

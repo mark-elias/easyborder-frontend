@@ -4,38 +4,37 @@
 /*  ---break---*/
 @custom-variant dark (&:is(.dark *));
 
-/*  */
+/* light mode (default) */
 :root {
   /* background & text */
-  --background: #0f0f11;
-  --foreground: #e2e2e6;
-  
-  /* my custom colors */
+  --background: #f7f7f9;
+  --foreground: #0f0f11;
+
+  /* my custom colors (darker than dark mode so they stay readable on white) */
   --custom-blue: #3551f3;
-  --custom-grey: #959597;
-  --custom-red: #ff605c;
-  --custom-yellow: #ffbd44;
-  --custom-green: #00ca4e;
-  
+  --custom-grey: #6b6b70;
+  --custom-red: #e5484d;
+  --custom-yellow: #b88300;
+  --custom-green: #00a33f;
+
   /* shadcn component colors */
-  --card: #0f0f11;
-  --card-foreground: #e2e2e6;
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: #0f0f11;
+  --popover: #ffffff;
+  --popover-foreground: #0f0f11;
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  /* I edited hereeee for Card footer */
-  --muted: #1c1c20;
-  --muted-foreground: oklch(0.556 0 0);
+  --secondary: #f1f1f4;
+  --secondary-foreground: #0f0f11;
+  --muted: #f1f1f4;
+  --muted-foreground: #6b6b70;
 
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --accent: #f1f1f4;
+  --accent-foreground: #0f0f11;
+  --destructive: #e5484d;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #3551f3;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -104,25 +103,37 @@
 
 
 
+/* dark mode */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  /* background & text */
+  --background: #0f0f11;
+  --foreground: #e2e2e6;
+
+  /* my custom colors */
+  --custom-blue: #3551f3;
+  --custom-grey: #959597;
+  --custom-red: #ff605c;
+  --custom-yellow: #ffbd44;
+  --custom-green: #00ca4e;
+
+  /* shadcn component colors */
+  --card: #0f0f11;
+  --card-foreground: #e2e2e6;
+  --popover: #16161a;
+  --popover-foreground: #e2e2e6;
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: #1c1c20;
+  --secondary-foreground: #e2e2e6;
+  /* Card footer background */
+  --muted: #1c1c20;
+  --muted-foreground: #959597;
+  --accent: #1c1c20;
+  --accent-foreground: #e2e2e6;
+  --destructive: #ff605c;
+  --border: #2a2a30;
+  --input: #2a2a30;
+  --ring: #3551f3;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

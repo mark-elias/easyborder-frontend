@@ -15,7 +15,7 @@ function HomePage() {
 
   return (
     <div className="flex flex-col items-center gap-15 mt-10">
-      <section className="flex flex-col gap-3 py-5 px-5 lg:px-10 shadow-xl border border-zinc-900 rounded text-md lg:text-xl text-white font-medium">
+      <section className="flex flex-col gap-3 py-5 px-5 lg:px-10 shadow-xl border border-border rounded text-md lg:text-xl text-foreground font-medium">
         <p>{HOME_PAGE_TEXT.description1}</p>
         <p>{HOME_PAGE_TEXT.description2}</p>
       </section>

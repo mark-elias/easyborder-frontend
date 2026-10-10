@@ -9,10 +9,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary hover:cursor-pointer hover:bg-custom-blue",
-        action: "bg-custom-blue hover:cursor-pointer",
+        default:
+          "bg-primary text-primary-foreground hover:cursor-pointer hover:bg-custom-blue hover:text-white",
+        action: "bg-custom-blue text-white hover:cursor-pointer",
         outline:
-          "border border-custom-blue hover:cursor-pointer hover:bg-custom-blue",
+          "border border-custom-blue hover:cursor-pointer hover:bg-custom-blue hover:text-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:

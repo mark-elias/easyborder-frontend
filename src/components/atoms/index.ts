@@ -6,4 +6,6 @@ export { SelectedOriginIndicator } from "./SelectedOriginIndicator/SelectedOrigi
 
 export { PortStatusBadge } from "./PortStatusBadge/PortStatusBadge";
 
+export { ThemeToggle } from "./ThemeToggle/ThemeToggle";
+
 export { FloatingActionButton } from "./FloatingActionButton/FloatingActionButton";

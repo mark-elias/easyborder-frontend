@@ -32,7 +32,7 @@ function CommunityFeedPage() {
 
   if (isLoading) return <LoadingSpinnerWithText />;
   if (isError)
-    return <p className="mt-10 text-red-500">Couldn&apos;t load posts.</p>;
+    return <p className="mt-10 text-destructive">Couldn&apos;t load posts.</p>;
 
   return (
     <div className="flex flex-col gap-6 mt-10 mx-auto w-full max-w-2xl px-4 pb-24">

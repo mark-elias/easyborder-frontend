@@ -9,7 +9,7 @@ import useCurrentUser from "@/src/hooks/useCurrentUser";
 // ui
 import { User, MessagesCircle, Heart } from "lucide-react";
 // components
-import { SelectedOriginIndicator } from "../../atoms";
+import { SelectedOriginIndicator, ThemeToggle } from "../../atoms";
 
 function NavBar() {
   const router = useRouter();
@@ -60,6 +60,7 @@ function NavBar() {
             </Button>
           </>
         )}
+        <ThemeToggle />
       </div>
     </nav>
   );

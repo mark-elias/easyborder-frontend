@@ -73,11 +73,11 @@ export function CreatePostForm({ onSuccess }: Props) {
           {...register("content")}
         />
         <div className="flex justify-between gap-2 text-sm">
-          <FieldDescription className="text-red-500">
+          <FieldDescription className="text-destructive">
             {errors.content?.message}
           </FieldDescription>
           <span
-            className={`shrink-0 ${isOverLimit ? "text-red-500" : "text-custom-grey"}`}
+            className={`shrink-0 ${isOverLimit ? "text-destructive" : "text-custom-grey"}`}
           >
             {charCount}/{MAX_POST_LENGTH}
           </span>

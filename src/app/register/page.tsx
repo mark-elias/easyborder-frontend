@@ -102,7 +102,7 @@ function RegisterPage() {
                   {...register("email")}
                 />
                 {errors.email && (
-                  <FieldDescription className="text-red-500">
+                  <FieldDescription className="text-destructive">
                     {errors.email.message}
                   </FieldDescription>
                 )}
@@ -120,7 +120,7 @@ function RegisterPage() {
                   {...register("password")}
                 />
                 {errors.password ? (
-                  <FieldDescription className="text-red-500">
+                  <FieldDescription className="text-destructive">
                     {errors.password.message}
                   </FieldDescription>
                 ) : (

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 // Tanstack
 import { QueryProvider } from "../lib/providers/QueryProvider";
+// light/dark mode
+import { ThemeProvider } from "../lib/providers/ThemeProvider";
 // componenets
 import { NavBar } from "../components/organisms";
 // toast
@@ -24,16 +26,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        {/* Tanstack Query Provider */}
-        <QueryProvider>
-          <div className="min-h-screen flex flex-col">
-            <NavBar />
-            <main className="flex-1 p-5">{children}</main>
-            <Toaster />
-          </div>
-        </QueryProvider>
+        <ThemeProvider>
+          {/* Tanstack Query Provider */}
+          <QueryProvider>
+            <div className="min-h-screen flex flex-col">
+              <NavBar />
+              <main className="flex-1 p-5">{children}</main>
+              <Toaster />
+            </div>
+          </QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
