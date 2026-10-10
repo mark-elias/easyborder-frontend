@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 // hooks
 import useCurrentUser from "@/src/hooks/useCurrentUser";
+import useIsClient from "@/src/hooks/useIsClient";
+// zustand
+import { useCountryAndCityStore } from "@/src/lib/store/useCountryAndCityStore";
 // ui
 import { User, MessagesCircle, Heart } from "lucide-react";
 // components
@@ -14,25 +17,28 @@ import { SelectedOriginIndicator, ThemeToggle } from "../../atoms";
 function NavBar() {
   const router = useRouter();
   const { data: user, isLoading } = useCurrentUser();
+  const selectedCity = useCountryAndCityStore((state) => state.selectedCity);
+  const isClient = useIsClient();
+  // origin lives in localStorage, so the server never knows it
+  const hasOrigin = isClient && !!selectedCity;
 
   return (
     <nav className="p-4 flex justify-between items-center shadow-lg">
       <Link
         href="/"
-        className=" text-xs lg:text-xl font-bold hover:cursor-pointer text-custom-blue"
+        className={`${hasOrigin ? "hidden md:block" : "block"} md:text-base lg:text-xl font-bold hover:cursor-pointer text-custom-blue`}
       >
         EasyBorder
       </Link>
-      <SelectedOriginIndicator />
+      {hasOrigin && <SelectedOriginIndicator />}
 
-      <div className="flex gap-5 items-center">
+      <div className="ml-auto md:ml-0 flex gap-5 items-center">
         <Link
           href="/community-feed"
           aria-label="Community Feed"
           className="hover:cursor-pointer hover:text-custom-blue font-semibold"
         >
-          <MessagesCircle className="md:hidden" />
-          <span className="hidden md:inline">Community Feed</span>
+          <MessagesCircle />
         </Link>
         {isLoading ? null : user ? (
           <Link
