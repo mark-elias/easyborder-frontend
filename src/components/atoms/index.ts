@@ -5,3 +5,5 @@ export { OperationalStatusBadge } from "./OperationalStatusBadge/OperationalStat
 export { SelectedOriginIndicator } from "./SelectedOriginIndicator/SelectedOriginIndicator";
 
 export { PortStatusBadge } from "./PortStatusBadge/PortStatusBadge";
+
+export { FloatingActionButton } from "./FloatingActionButton/FloatingActionButton";
