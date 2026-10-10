@@ -86,7 +86,7 @@ export function CreatePostForm({ onSuccess }: Props) {
 
       <Button
         type="submit"
-        className="self-end"
+        className="self-end bg-custom-blue text-white"
         disabled={
           createPostMutation.isPending || charCount === 0 || isOverLimit
         }
