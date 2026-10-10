@@ -40,16 +40,14 @@ function NavBar() {
         >
           <MessagesCircle />
         </Link>
-        {isLoading ? null : user ? (
-          <Link
-            href="/favorites"
-            aria-label="Favorites"
-            className="hover:cursor-pointer hover:text-custom-blue font-semibold"
-          >
-            <Heart className="md:hidden" />
-            <span className="hidden md:inline">Favorites</span>
-          </Link>
-        ) : null}
+        <Link
+          href="/favorites"
+          aria-label="Favorites"
+          className="hover:cursor-pointer hover:text-custom-blue font-semibold"
+        >
+          <Heart />
+        </Link>
+        <ThemeToggle />
         {isLoading ? null : user ? (
           <button
             onClick={() => router.push("/profile")}
@@ -61,7 +59,6 @@ function NavBar() {
         ) : (
           <Button onClick={() => router.push("/login")}>Login</Button>
         )}
-        <ThemeToggle />
       </div>
     </nav>
   );
