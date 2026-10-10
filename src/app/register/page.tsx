@@ -79,11 +79,13 @@ function RegisterPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-full mt-10">
-      <Card className="w-full max-w-md p-5 py-10">
+    <div className="flex justify-center items-center min-h-full mt-4 md:mt-10">
+      <Card className="w-full max-w-md px-2 py-6 md:p-5 md:py-10">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold">Create Account</CardTitle>
-          <CardDescription className="text-lg">
+          <CardTitle className="text-2xl md:text-3xl font-bold">
+            Create Account
+          </CardTitle>
+          <CardDescription className="text-base md:text-lg">
             enter your email and a password
           </CardDescription>
         </CardHeader>
@@ -92,13 +94,13 @@ function RegisterPage() {
             <FieldGroup>
               {/* Email Field */}
               <Field data-invalid={!!errors.email}>
-                <FieldLabel htmlFor="email" className="text-xl">
+                <FieldLabel htmlFor="email" className="text-base md:text-xl">
                   Email
                 </FieldLabel>
                 <Input
                   id="email"
                   type="email"
-                  className="py-5 border border-custom-grey text-xl"
+                  className="h-10 md:h-12 border border-custom-grey text-base md:text-xl"
                   placeholder="john@example.com"
                   {...register("email")}
                 />
@@ -110,13 +112,13 @@ function RegisterPage() {
               </Field>
               {/* Password Field */}
               <Field data-invalid={!!errors.password}>
-                <FieldLabel htmlFor="password" className="text-xl">
+                <FieldLabel htmlFor="password" className="text-base md:text-xl">
                   Password
                 </FieldLabel>
                 <Input
                   id="password"
                   type="password"
-                  className="py-5 border border-custom-grey text-xl"
+                  className="h-10 md:h-12 border border-custom-grey text-base md:text-xl"
                   placeholder="Enter your password"
                   {...register("password")}
                 />
@@ -134,7 +136,7 @@ function RegisterPage() {
               <Field>
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full h-10"
                   disabled={registerMutation.isPending}
                 >
                   {registerMutation.isPending ? (
