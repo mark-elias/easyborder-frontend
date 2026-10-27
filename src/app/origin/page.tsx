@@ -61,7 +61,7 @@ export default function OriginPage() {
       </div>
 
       {/* City list */}
-      <section className="flex flex-col lg:flex-row lg:flex-wrap gap-5 lg:px-60">
+      <section className="flex flex-row flex-wrap gap-3 lg:gap-5 px-2 lg:px-60">
         {cities.map((city) => (
           <Button
             key={city}
