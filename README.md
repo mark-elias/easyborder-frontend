@@ -28,18 +28,18 @@ actually happening at the border before you leave the house.
 - Compare wait times across multiple crossings and lanes
 - Save your favorite crossings for quick access
 - Community feed where travelers post updates and photos about their border wait experiences
-- Authentication with Passport.js, JWTs, and cookies
+- Authentication with Passport.js, JWTs, and bcrypt
 
 ## Tech Stack
 **Frontend:** TypeScript, Next.js, Tailwind, Shadcn, Bun, Tanstack Query, React-Hook-Form, Zod, Zustand
 
-**Backend:** TypeScript, NestJS, Prisma
+**Backend:** TypeScript, Nest.js
 
-**Database:** PostgreSQL (AWS RDS)
+**Database:** PostgreSQL (AWS RDS), Drizzle
 
 **Auth:** Passport.js, JWTs, cookies
 
-**Infra:** AWS EC2, AWS RDS, AWS S3 (planned), Nginx, Certbot, Docker Compose, Docker Hub, GitHub Actions
+**Infra:** AWS EC2, AWS RDS, AWS S3, Nginx, Certbot, Docker Compose, Docker Hub, GitHub Actions, Terraform
 
 ## Architecture
 
@@ -60,9 +60,9 @@ flowchart TD
         end
 
         RDS["RDS<br/>PostgreSQL"]
-        S3["S3<br/>Post images (planned)"]
+        S3["S3<br/>Post images"]
 
-        Backend -->|"Prisma · TLS"| RDS
+        Backend -->|"Drizzle · TLS"| RDS
         Backend --> S3
     end
 
@@ -71,10 +71,10 @@ flowchart TD
     subgraph CICD["CI/CD"]
         GH["GitHub<br/>push to main"] --> GHA["GitHub Actions"]
         GHA -->|"build & push image"| DH["Docker Hub"]
-        GHA -->|"SSH deploy +<br/>run prisma migrations"| EC2
+        GHA -->|"SSH deploy +<br/>run drizzle migrations"| EC2
     end
 ```
 
-**Request flow:** the browser loads the frontend from Vercel, then makes API calls directly to `api.easyborder.io`, which hits nginx on the EC2 instance. Nginx reverse-proxies to the NestJS backend, which queries PostgreSQL on RDS via Prisma over an encrypted (TLS) connection, and also pulls live wait times from the CBP API.
+**Request flow:** the browser loads the frontend from Vercel, then makes API calls directly to `api.easyborder.io`, which hits nginx on the EC2 instance. Nginx reverse-proxies to the NestJS backend, which queries PostgreSQL on RDS via Drizzle over an encrypted (TLS) connection, and also pulls live wait times from the CBP API.
 
-**Deploy flow:** pushing to `main` triggers GitHub Actions, which builds and pushes a Docker image to Docker Hub, then SSHes into EC2 to pull the new image, run any pending Prisma migrations against RDS, and restart the backend container.
+**Deploy flow:** pushing to `main` triggers GitHub Actions, which builds and pushes a Docker image to Docker Hub, then SSHes into EC2 to pull the new image, run any pending Drizzle migrations against RDS, and restart the backend container.
