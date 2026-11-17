@@ -17,7 +17,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "EasyBorder",
-  description: "Border Wait Times app",
+  description:
+    "Reliable, official CBP border wait times for US ports of entry from Mexico and Canada. Compare General, SENTRI & Ready Lanes for vehicle, pedestrian & commercial traffic.",
 };
 
 export default function RootLayout({
